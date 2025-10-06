@@ -15,11 +15,13 @@ public class ejercicio1 {
         for(int i=0; i<10; i++) {
             System.out.println("Introduce el siguiente valor: ");
             arrayInt[i] = sc.nextInt();
-
+        }
             //Muestra por consola el indice y el valor.
             // indice -> valor
+
+        System.out.println("Contenido array: ");
+        for(int i = 0; i < arrayInt.length; i++) {
+            System.out.println("Índice " + i + ": Valor = " + arrayInt[i]);
         }
-
-
     }
 }
