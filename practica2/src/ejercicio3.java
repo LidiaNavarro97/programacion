@@ -16,7 +16,9 @@ public class ejercicio3 {
         }
 
         int menor = numeros[0];
+
         // Recorrer el array en busca del numero mas menor
+
         for (int i = 1; i < numeros.length; i++) {
             if (numeros[i] < menor) {
                 menor = numeros[i];
