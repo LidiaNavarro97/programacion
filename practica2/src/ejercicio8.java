@@ -15,7 +15,7 @@ public class ejercicio8 {
             // Pido el valor de N mirando que sea positivo
 
             do {
-                System.out.print("¿Cuántas personas vas a ingresar? (un número entero positivo): ");
+                System.out.print("¿Cuántas personas vas a calcular? (un número entero positivo): ");
                 N = scanner.nextInt();
             } while (N <= 0);
 
@@ -24,8 +24,8 @@ public class ejercicio8 {
 
             // Leo la altura
 
-            for (int i=0;i<N; i++) {
-                System.out.print("Altura de la persona " + (i+1)); //Aqui hay un error que tengo que corregir
+            for (int i = 0; i < N; i++) {
+                System.out.print("Altura de la persona " + (i + 1) + ":"); //Aqui hay un error que tengo que corregir
                 alturas[i] = scanner.nextDouble();
                 suma += alturas[i];
             }
@@ -48,8 +48,8 @@ public class ejercicio8 {
 
             // Mostrar resultados
 
-            System.out.printf("Altura media: (en metros)", media);
+            System.out.printf("Altura media: (en metros) ", media);
             System.out.println("Personas con altura superior a la media: " + superiores);
             System.out.println("Personas con altura inferior a la media: " + inferiores);
-
+        }
 }
