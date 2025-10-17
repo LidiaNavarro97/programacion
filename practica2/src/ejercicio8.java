@@ -25,7 +25,7 @@ public class ejercicio8 {
             // Leo la altura
 
             for (int i = 0; i < N; i++) {
-                System.out.print("Altura de la persona " + (i + 1) + ":"); //Aqui hay un error que tengo que corregir
+                System.out.print("Altura de la persona " + (i + 1) + ":");
                 alturas[i] = scanner.nextDouble();
                 suma += alturas[i];
             }
