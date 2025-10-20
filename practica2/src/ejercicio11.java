@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ejercicio11 {
     public static void main(String[] args) {
 
@@ -8,41 +10,20 @@ public class ejercicio11 {
         // PRUEBA CON UN ARRAY DE TAMAÑO 6.
 
         // Hacemos un array de tamaño 6
-        int[] numeros = {1,2,3,4,5,6};
+        int[] numeros = {1, 2, 3, 4, 5, 6};
 
-        // Mostrar el array original
-        System.out.println("Array original:");
-        mostrarArray(numeros);
+        // creamos otro array con la misma longitud
+        int[] arrayInvertido = new int[numeros.length];
 
-        // Invertir el array
-        invertirArray(numeros);
-
-        // Mostrar el array invertido
-        System.out.println("Array invertido:");
-        mostrarArray(numeros);
-    }
-
-    // invertir los elementos del array
-    public static void invertirArray(int[] array) {
-        int inicio = 0;
-        int fin = array.length - 1;
-
-        while (inicio < fin) {
-            int temp = array[inicio];
-            array[inicio] = array[fin];
-            array[fin] = temp;
-
-            inicio++;
-            fin--;
+        //llenar ese array con los valores del array original en orden inverso
+        for (int i = 0; i < numeros.length; i++) {
+            arrayInvertido[i] = numeros[numeros.length - 1 - i];
         }
-    }
+        // imprimimos el array original y el invertido
+        System.out.print("Array original: " + Arrays.toString(numeros));
+        System.out.print("Array invertido: " + Arrays.toString(arrayInvertido));
 
-    // mostrar los elementos del array
-    public static void mostrarArray(int[] array) {
-        for (int i=0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
+
     }
 }
 
