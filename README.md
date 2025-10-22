@@ -1,5 +1,5 @@
 # 💻 PROGRAMACIÓN
-
+Estructura del repositorio:
 ```bash
 📁 programacion
 ├── 🌿 main
