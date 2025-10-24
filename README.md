@@ -1,5 +1,6 @@
 # PROGRAMACION
 Estructura del repositorio:
+```bash
 📁 programacion
 ├── 🌿 main
 │   ├── 📁 practica2
