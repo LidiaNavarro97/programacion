@@ -22,7 +22,7 @@ public class ejercicio1 {
 
         //recorrer las columnas para para imprimir sus nombres
         for (int j = 0; j < doub[0].length; j++) {
-            System.out.printf("%12s","Columna"+j);
+            System.out.printf("%12s","Columna "+j);
         }
         System.out.println();
 
@@ -31,7 +31,7 @@ public class ejercicio1 {
 
         //recorremos las filas para imprimir sus numeros
         for (int i = 0; i < doub.length; i++) {
-            System.out.printf("%-10s","Fila"+i);
+            System.out.printf("%-10s","Fila "+i);
             for (int j = 0; j < doub[i].length; j++) {
                 if (vacio[i][j]) {
                     System.out.printf("%12s", " "); //el esapcio en blanco
