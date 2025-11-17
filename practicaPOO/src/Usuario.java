@@ -87,7 +87,6 @@ public class Usuario {
         }
 
         //metodo de representacion
-        @Override
                 public String toString() {
             return "Usuario: " + this.nombre + " " + this.apellidos + "\nDireccion: " + this.direccion+ "\nEmail: " + email + "\nCódigo postal: " + codigoPostal;
         }
