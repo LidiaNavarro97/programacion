@@ -10,18 +10,6 @@ public class Main {
                 "holamundo"
         );
 
-        System.out.println(user.getNombre());
-        user.setNombre("Pablo");
-        System.out.println(user.getNombre());
-
-        System.out.println(user.getEmail());
-        user.setEmail("hola@lidia");
-        System.out.println(user.getEmail());
-
-        System.out.println(user.toString());
-
-        System.out.println(user.checkUsuario("lnavest@gmail.com", "holamundo"));
-
 
     }
 }
