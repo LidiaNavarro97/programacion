@@ -15,31 +15,32 @@ public class ejercicio6 {
 
 
         // Array con números del 20 al 40
-        int[] numeros = new int[21];
+        int[] numeros = new int[21]; // 40 - 20 + 1 = 21 números
         int indice = 0;
         for (int i = 20; i <= 40; i++) {
-            numeros[indice++] = i;
+            numeros[indice++] = i; // los vamos guardando de forma consecutiva
         }
 
-        // Mezclar manualmente el array
+        // Mezclar manualmente el array para evitar números repetidos
         Random random = new Random();
         for (int i = 0; i < numeros.length; i++) {
             int posAleatoria = random.nextInt(numeros.length);
-            int aux = numeros[i];
+            int aux = numeros[i]; // intercambiamos los valores
             numeros[i] = numeros[posAleatoria];
             numeros[posAleatoria] = aux;
         }
 
-        // Variables para el máximo y mínimo
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
+        // Variables para el máximo y mínimo, dentro del array
+        int max = Integer.MIN_VALUE; // valor mínimo posible para iniciar la búsqueda
+        int min = Integer.MAX_VALUE; // valor máximo posible para iniciar la búsqueda
         int maxFila = 0, maxCol = 0, minFila = 0, minCol = 0;
 
         // rellenamos la matriz sin repetir valores
         int index = 0;
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                num[i][j] = numeros[index++];
+                num[i][j] = numeros[index++];// asignamos el número y avanzamos en el array mezclado
+
                 // Buscar máximo y mínimo
                 if (num[i][j] > max) {
                     max = num[i][j];
@@ -54,40 +55,40 @@ public class ejercicio6 {
             }
         }
 
-        // Calcular sumas
+        // Calcular sumas total, por fila y por columna
         int sumaTotal = 0;
         int[] sumaFilas = new int[filas];
         int[] sumaColumnas = new int[columnas];
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                sumaFilas[i] += num[i][j];
-                sumaColumnas[j] += num[i][j];
-                sumaTotal += num[i][j];
+                sumaFilas[i] += num[i][j]; // suma de la fila actual
+                sumaColumnas[j] += num[i][j];  // suma de la columna
+                sumaTotal += num[i][j];  // suma total de todos los valores
             }
         }
 
         // Mostrar los resultasdo de la tabla
         System.out.println("------------------------- TABLA -------------------------");
-        System.out.printf("%-6s", " "); // un espacio para el encabezado de ls fila
+        System.out.printf("%-6s", " "); // un espacio para alinear sobre las filas
         for (int j = 0; j < columnas; j++) {
-            System.out.printf("%6s", "C" + j);
+            System.out.printf("%6s", "C" + j); //encabezados de columnas
         }
         System.out.printf("%10s\n", "Suma Fila");
 
         for (int i = 0; i < filas; i++) {
-            System.out.printf("Fila %-2d", i);
+            System.out.printf("Fila %-2d", i); //muestra el nombre de las filas
             for (int j = 0; j < columnas; j++) {
-                System.out.printf("%6d", num[i][j]);
+                System.out.printf("%6d", num[i][j]); // imprime los valores
             }
-            System.out.printf("%10d\n", sumaFilas[i]);
+            System.out.printf("%10d\n", sumaFilas[i]); // imprime la suma de la fila
         }
 
-        System.out.printf("%-6s", "Suma");
+        System.out.printf("%-6s", "Suma");  // etiqueta para las sumas de columnas
         for (int j = 0; j < columnas; j++) {
-            System.out.printf("%6d", sumaColumnas[j]);
+            System.out.printf("%6d", sumaColumnas[j]); // suma de cada columna
         }
-        System.out.printf("%10d TOTAL", sumaTotal);
+        System.out.printf("%10d TOTAL", sumaTotal); // suma total de la matriz
 
         // Mostrar máximo y mínimo
         System.out.println();
