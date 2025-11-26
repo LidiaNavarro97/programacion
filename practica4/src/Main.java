@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    //PRECARGA DE DATOS
+    //LISTAS
 
     static ArrayList<Hospital> hospitales = new ArrayList<>();
     static ArrayList<Areas> areas = new ArrayList<>();
@@ -17,6 +17,8 @@ public class Main {
         cargarDatosIniciales();
         ejecutarMenuPrincipal();
     }
+
+    //CARGA DE DATOS
     public static void cargarDatosIniciales() {
 
 
@@ -49,8 +51,8 @@ public class Main {
 
         //3.MEDICOS
         //Creo dos medicos
-        Medico m1 = new Medico("Joselito", a1, "32901234R", 28, "Hombre", 2500, 20 - 11 - 2020);
-        Medico m2 = new Medico("Lidia", a2, "32098743L", 30, "Mujer", 3400, 15 - 10 - 2022);
+        Medico m1 = new Medico("Joselito", a1, "32901234R", 28, "Hombre", 2500, 2020-11-20);
+        Medico m2 = new Medico("Lidia", a2, "32098743L", 30, "Mujer", 3400, 2022-10-15);
 
         medicos.add(m1);
         medicos.add(m2);
@@ -73,12 +75,9 @@ public class Main {
 
     }
 
-        //PRUEBAS
-        System.out.println(a1.getNumMedicos());
-
-        Areas a = h1.getAreas().get(0);
-        System.out.println(a.getNombre());
 
 
     }
-}
+
+
+

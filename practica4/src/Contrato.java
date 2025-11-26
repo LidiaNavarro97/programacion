@@ -1,12 +1,14 @@
+import java.time.LocalDate;
+
 public class Contrato {
 
-    private int fecha;
+    private LocalDate fechaCreacion;
     private Medico Medico;
     private Hospital Hospital;
 
-    public Contrato(int fecha, Medico medico, Hospital hospital) {
+    public Contrato(LocalDate fechaCreacion, Medico medico, Hospital hospital) {
 
-        this.fecha = fecha;
+        this.fechaCreacion = fechaCreacion;
         this.Medico = medico;
         this.Hospital = hospital;
     }
@@ -14,8 +16,8 @@ public class Contrato {
     //get
 
 
-    public int getFecha() {
-        return fecha;
+    public LocalDate getFecha() {
+        return fechaCreacion;
     }
 
     public Medico getMedico() {
@@ -29,8 +31,8 @@ public class Contrato {
     //SET
 
 
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
+    public void setFecha(LocalDate fecha) {
+        this.fechaCreacion = fecha;
     }
 
     public void setMedico(Medico medico) {
@@ -45,14 +47,11 @@ public class Contrato {
     // COMPROBACION DE AÑO
 
     public boolean esDeAnio(int anio) {
-        if (fecha == anio) {
-            return true;
-        } else {
-            return false;
-        }
+        return fechaCreacion.getYear() == anio;
     }
 
-   //CALCULO DE VIGENCIA
+
+    //CALCULO DE VIGENCIA
 
     public int diasDesdeCreacion(int fechaHoyAnio, int fechaCreacionAnio) {
         return 365 * (fechaCreacionAnio - fechaHoyAnio);

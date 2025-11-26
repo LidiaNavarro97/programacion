@@ -1,4 +1,6 @@
-import java.awt.geom.Area;
+
+import com.sun.source.tree.DirectiveTree;
+
 import java.util.ArrayList;
 
 public class Hospital {
@@ -6,18 +8,20 @@ public class Hospital {
     private String nombre;
     private String CIF;
     private ArrayList<Areas> areas;
-    private String direccion;
+    private Direccion direccion;
 
 
-    public Hospital(String nombre, String CIF, String direccion) {
+    public Hospital(String nombre, String CIF, Direccion direccion) {
         this.nombre = nombre;
         this.CIF = CIF;
         this.areas = new ArrayList<>();
+        this.direccion= direccion;
     }
     //get
     public ArrayList<Areas> getAreas() {
         return this.areas;
     }
+
     public String getNombre() {
         return nombre;
     }
@@ -26,7 +30,7 @@ public class Hospital {
         return CIF;
     }
 
-    public String getDireccion() {
+    public Direccion getDireccion() {
         return direccion;
     }
 
@@ -34,7 +38,7 @@ public class Hospital {
 
 
     public void setNombre(String nombre) {
-        nombre = nombre;
+        this.nombre = nombre;
     }
 
     public void setCIF(String CIF) {
@@ -45,7 +49,7 @@ public class Hospital {
         this.areas = areas;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
 

@@ -1,4 +1,4 @@
-import java.awt.geom.Area;
+import java.time.LocalDate;
 
 public class Medico {
     private String nombre;
@@ -7,17 +7,17 @@ public class Medico {
     private int edad;
     private String sexo;
     private double sueldoBruto;
-    private int fecha;
+    private LocalDate fechaInicio;
     private Areas nuevaArea;
 
-    public Medico(String nombre, Areas area, String DNI, int edad, String sexo, double sueldoBruto, int fecha) {
+    public Medico(String nombre, Areas area, String DNI, int edad, String sexo, double sueldoBruto, LocalDate fechaInicio) {
         this.nombre = nombre;
         this.area = area;
         this.DNI = DNI;
         this.edad = edad;
         this.sexo = sexo;
         this.sueldoBruto = sueldoBruto;
-        this.fecha = fecha;
+        this.fechaInicio = fechaInicio;
 
         area.aumentarMedicos();
     }
@@ -49,8 +49,8 @@ public class Medico {
         return sueldoBruto;
     }
 
-    public int getFecha() {
-        return fecha;
+    public LocalDate getFecha() {
+        return fechaInicio;
     }
 
     public Areas getNuevaArea() {
@@ -65,10 +65,6 @@ public class Medico {
         this.nombre = nombre;
     }
 
-    public void setArea(Areas area) {
-        this.area = area;
-    }
-
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
@@ -81,8 +77,8 @@ public class Medico {
         this.sexo = sexo;
     }
 
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
+    public void setFecha(LocalDate fecha) {
+        this.fechaInicio = fechaInicio;
     }
 
     public void setSueldoBruto(double sueldoBruto) {
@@ -102,7 +98,7 @@ public class Medico {
     //Calculo ANTIGUEDAD
 
     public int getAniosAntiguedad() {
-        return 2025 - this.fecha;
+        return 2025-this.fechaInicio;
     }
 
     //Calculo IMPUESTOS ANUALES

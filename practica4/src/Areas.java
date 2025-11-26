@@ -83,6 +83,7 @@ public class Areas {
     public int calcularCapacidadRestante(int capacidadMaxima) {
         return capacidadMaxima - this.numMedicos;
     }
+
 }
 
 
