@@ -58,9 +58,7 @@ public class Contrato {
     }
 
     public String toString() {
-        return "CONTRATO: " +
+        return "Contrato (" + Medico.getDNI() + ") - " + Hospital.getNombre() + " - " + fechaCreacion;
     }
-
-
 
 }

@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         cargarDatosIniciales();
-        ejecutarMenuPrincipal();
+        MenuGestor.ejecutarMenuPrincipal();
     }
 
     //CARGA DE DATOS
@@ -59,8 +59,8 @@ public class Main {
 
         //4.CONTRATO
         //Creo dos contratos, cada uno asociado a un medico y a un hospital
-        Contrato c1 = new Contrato(20-11-20, m1, h1);
-        Contrato c2 = new Contrato(15-10-22, m2, h2);
+        Contrato c1 = new Contrato(2020-11-20, m1, h1);
+        Contrato c2 = new Contrato(2022-10-15, m2, h2);
         //Guardo los contratos en la lista general de contratos
         contratos.add(c1);
         contratos.add(c2);

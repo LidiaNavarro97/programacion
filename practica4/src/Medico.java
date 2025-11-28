@@ -78,7 +78,6 @@ public class Medico {
     }
 
     public void setFecha(LocalDate fecha) {
-        this.fechaInicio = fechaInicio;
     }
 
     public void setSueldoBruto(double sueldoBruto) {
@@ -98,7 +97,8 @@ public class Medico {
     //Calculo ANTIGUEDAD
 
     public int getAniosAntiguedad() {
-        return 2025-this.fechaInicio;
+        int i = 2025 - this.fechaInicio;
+        return i;
     }
 
     //Calculo IMPUESTOS ANUALES
