@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Medico {
     private String nombre;
@@ -9,8 +10,9 @@ public class Medico {
     private double sueldoBruto;
     private LocalDate fechaInicio;
     private Areas nuevaArea;
+    private ArrayList<Paciente> paciente;
 
-    public Medico(String nombre, Areas area, String DNI, int edad, String sexo, double sueldoBruto, LocalDate fechaInicio) {
+    public Medico(String nombre, Areas area, String DNI, int edad, String sexo, double sueldoBruto, LocalDate fechaInicio, Paciente paciente) {
         this.nombre = nombre;
         this.area = area;
         this.DNI = DNI;
@@ -18,12 +20,15 @@ public class Medico {
         this.sexo = sexo;
         this.sueldoBruto = sueldoBruto;
         this.fechaInicio = fechaInicio;
-
+        this.paciente = new ArrayList<>();
         area.aumentarMedicos();
+
     }
 
     //get
-
+    public ArrayList<Paciente> getPaciente() {
+        return paciente;
+    }
 
     public String getNombre() {
         return nombre;
@@ -59,7 +64,9 @@ public class Medico {
 
 
     //SET
-
+    public void setPaciente(ArrayList<Paciente> paciente) {
+        this.paciente = paciente;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -86,6 +93,13 @@ public class Medico {
 
     public void setNuevaArea(Areas nuevaArea) {
         this.nuevaArea = nuevaArea;
+    }
+
+    //IMPLEMENTAR GETNUMPACIENTES
+
+    public int getNumeroPacientesAignados(Paciente paciente) {
+        this.paciente.add(paciente);
+        return 0;
     }
 
     //Calculo SUELDO NETO

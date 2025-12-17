@@ -22,6 +22,14 @@ public class Main {
     public static void cargarDatosIniciales() {
 
 
+        Equipamiento eq1 = new Equipamiento("Equipamiento1", "C1", 2005);
+        Equipamiento eq2 = new Equipamiento("Equipamiento2", "C2", 2018);
+
+
+
+        Paciente p1 = new Paciente("32901245R", "Lidia", "Mujer");
+        Paciente p2 = new Paciente("32901248L", "Jose", "Hombre");
+
         //1.HOSPITALES
         //Creo dos hospitales
         Hospital h1 = new Hospital("Hospital Central", "H001", "Calle Angustias");
