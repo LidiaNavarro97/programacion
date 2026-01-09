@@ -1,4 +1,5 @@
 package com.juego.habilidades;
 
-public class Habilidad {
+public interface Habilidad {
+
 }
