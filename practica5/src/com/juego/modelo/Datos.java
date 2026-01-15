@@ -29,5 +29,16 @@ public class Datos {
         return vidaMax;
     }
 
+    public int getFuerza() {
+        return fuerza;
+    }
+
+    public int getInteligencia() {
+        return inteligencia;
+    }
+
+    public int getDestreza() {
+        return destreza;
+    }
 
 }
