@@ -2,8 +2,8 @@ package com.juego.habilidades;
 
 public class CuraCuerpoACuerpo implements Habilidad{
 
-    private int usos= 3;
-    private int valor;
+    private int usos= 3; // el numero de usos disponibles
+    private int valor; //cantidad de vida que cura
     private String nombre;
 
     public CuraCuerpoACuerpo( String nombre, int valor) {
