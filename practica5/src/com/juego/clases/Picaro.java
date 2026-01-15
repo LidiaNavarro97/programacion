@@ -22,11 +22,11 @@ public class Picaro implements Clase {
         return 105;
     }
 
-public Habilidad[] getHabilidades () {
+    public Habilidad[] getHabilidades () {
         return new Habilidad[] {
-            new DanioADistancia("Daga envenenada", 18),
-            new CuraCuerpoACuerpo("Venda improvisada", 10),
-            new DanioCuerpoACuerpo("Puñalada sombria", 20),
+                new DanioADistancia("Daga envenenada", 18),
+                new CuraCuerpoACuerpo("Venda improvisada", 10),
+                new DanioCuerpoACuerpo("Puñalada sombria", 20),
         };
-   }
+    }
 }
