@@ -51,5 +51,4 @@
 └── 🌿 practicaPOO
 ```
 
-📌 *Las carpetas contienen las distintas prácticas y ejercicios realizados durante el curso de Programación.*
 
