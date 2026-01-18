@@ -13,7 +13,7 @@
 
 ## 📁 Estructura del proyecto
 
-```text
+```bash
 📁 PROJECT
 ├── 📁 .idea
 ├── 📁 Herencia_Interfaces
