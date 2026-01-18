@@ -6,6 +6,7 @@
 
 ## 📁 Estructura del proyecto
 
+```bash
 
 📁 PROJECT
 ├── 📁 .idea
