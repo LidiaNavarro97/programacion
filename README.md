@@ -6,14 +6,7 @@
 
 ## 📁 Estructura del proyecto
 
-```bash
-# Repositorio de la alumna **Lidia Navarro Estepa**
 
-## 1º DAW
-
-## 📁 Estructura del proyecto
-
-```bash
 📁 PROJECT
 ├── 📁 .idea
 ├── 📁 Herencia_Interfaces
