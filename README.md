@@ -6,7 +6,7 @@
 
 ## 📁 Estructura del proyecto
 
-```text
+```bash
 # Repositorio de la alumna **Lidia Navarro Estepa**
 
 ## 1º DAW
