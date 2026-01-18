@@ -1,8 +1,9 @@
 package com.juego.razas;
 
-import com.juego.modelo.Datos;
-
 public interface Raza {
     String getNombre();
-    Datos getDatosBase();
+    int fuerza();
+    int inteligencia();
+    int destreza();
+    int vida();
 }

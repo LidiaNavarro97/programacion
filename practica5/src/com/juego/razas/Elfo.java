@@ -7,6 +7,26 @@ public class Elfo implements Raza {
         return "ELFO";
     }
 
+
+    public int fuerza() {
+        return 0;
+    }
+
+
+    public int inteligencia() {
+        return 0;
+    }
+
+
+    public int destreza() {
+        return 0;
+    }
+
+
+    public int vida() {
+        return 0;
+    }
+
     public Datos getDatosBase() {
         // Más destreza e inteligencia
         return new Datos(0, 1, 2, 95);

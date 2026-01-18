@@ -7,6 +7,26 @@ public class Enano implements Raza {
         return "ENANO";
     }
 
+
+    public int fuerza() {
+        return 0;
+    }
+
+
+    public int inteligencia() {
+        return 0;
+    }
+
+
+    public int destreza() {
+        return 0;
+    }
+
+
+    public int vida() {
+        return 0;
+    }
+
     public Datos getDatosBase() {
         // Más fuerza y vida
         return new Datos(2, 0, 0, 120);

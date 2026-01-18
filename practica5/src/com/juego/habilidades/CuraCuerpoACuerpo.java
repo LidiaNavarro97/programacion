@@ -11,15 +11,18 @@ public class CuraCuerpoACuerpo implements Habilidad{
         this.valor = valor;
     }
 
+    // devuelve el nombre de la habilidad con sus usos restantes
     public String getNombre() {
         return nombre + "(" +usos+ "usos)";
     }
 
+    // usa la habilidad, decrementa ese uso y devuelve el valor de la curacion
     public int usar() {
         usos--;
         return valor;
     }
 
+    // indica si esta habilidad aun tiene usos disponibles
     public boolean tieneUsos() {
         return usos>0;
     }

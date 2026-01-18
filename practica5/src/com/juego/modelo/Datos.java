@@ -1,44 +1,30 @@
 package com.juego.modelo;
 
 //Esta clase es para representar las estadisticas de los personajes
+
+// Clase que representa las estadísticas base de un personaje
 public class Datos {
 
-    //Atributos del personaje
-    private int fuerza;
-    private int inteligencia;
-    private int destreza;
-    private int vidaMax;
+    // Atributos del personaje: fuerza, inteligencia, destreza y vida máxima
+    private int fuerza, inteligencia, destreza, vidaMax;
 
-    //CONSTRUCTOR
-    public Datos( int fuerza, int inteligencia, int destreza, int vidaMax) {
-        this.fuerza = fuerza;
-        this.inteligencia = inteligencia;
-        this.destreza = destreza;
-        this.vidaMax = vidaMax;
+    // Constructor: inicializa las estadísticas base
+    public Datos(int fuerza, int inteligencia, int destreza, int vidaMax){
+        this.fuerza = fuerza;       // fuerza base
+        this.inteligencia = inteligencia;       // inteligencia base
+        this.destreza = destreza;       // destreza base
+        vidaMax = vidaMax;      // vida máxima base
     }
 
-    //Aplicar un bonus a las estadisticas
-    public void bonus( int fuerza, int inteligencia, int destreza){
-        this.fuerza += fuerza;
-        this.inteligencia +=  inteligencia;
-        this.destreza += destreza;
+    // Aplica un bonus a las estadísticas (por ejemplo, de la clase del personaje)
+    public void bonus(int f, int i, int d){
+        this.fuerza += f;      // suma bonus a la fuerza
+        this.inteligencia += i;      // suma bonus a la inteligencia
+        this.destreza += d;      // suma bonus a la destreza
     }
 
-    //Devuelve la vida maxima del personaje
-    public int getVidaMax() {
+    // Devuelve la vida máxima del personaje
+    public int getVidaMax(){
         return vidaMax;
     }
-
-    public int getFuerza() {
-        return fuerza;
-    }
-
-    public int getInteligencia() {
-        return inteligencia;
-    }
-
-    public int getDestreza() {
-        return destreza;
-    }
-
 }
