@@ -1,12 +1,18 @@
 package com.juego.modelo;
 
+import com.juego.clases.Clase;
+import com.juego.razas.Raza;
 import java.util.*;
 
-// Clase que gestiona la lista de personajes del juego
 public class GestorPersonaje {
 
     // Lista interna que almacena los personajes
     private List<Personaje> lista = new ArrayList<>();
+
+    // Crea y devuelve un personaje
+    public Personaje crearPersonaje(String nombre, Clase clase, Raza raza) {
+        return new Personaje(nombre, clase, raza);
+    }
 
     // Metodo para agregar un personaje a la lista
     public void add(Personaje p){

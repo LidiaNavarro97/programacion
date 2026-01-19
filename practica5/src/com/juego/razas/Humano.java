@@ -6,22 +6,15 @@ public class Humano implements Raza {
     public String getNombre() {
         return "HUMANO";
     }
-
-
     public int fuerza() {
         return 0;
     }
-
     public int inteligencia() {
         return 0;
     }
-
-
     public int destreza() {
         return 0;
     }
-
-
     public int vida() {
         return 0;
     }

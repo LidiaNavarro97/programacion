@@ -10,11 +10,13 @@ public class DanioADistancia implements Habilidad{
         this.nombre = nombre;
         this.valor = valor;
     }
-
+    // devuelve el nombre de la habilidad con sus usos restantes
     public String getNombre() {
         return nombre + "(" +usos+ "usos)";
     }
 
+
+    // usa la habilidad, decrementa ese uso y devuelve el valor de la curacion
     public int usar() {
         usos--;
         return valor;
