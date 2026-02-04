@@ -29,4 +29,5 @@ public class DanioADistancia implements Habilidad{
     public int getUsosRestantes() {
         return usos;
     }
+
 }

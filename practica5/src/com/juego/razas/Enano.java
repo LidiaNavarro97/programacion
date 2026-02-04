@@ -58,4 +58,5 @@ public class Enano implements Raza {
     public int vida() {
         return vida;
     }
+
 }

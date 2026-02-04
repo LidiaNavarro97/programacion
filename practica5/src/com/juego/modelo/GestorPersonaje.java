@@ -23,4 +23,5 @@ public class GestorPersonaje {
     public List<Personaje> get(){
         return lista;
     }
+
 }

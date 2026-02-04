@@ -6,4 +6,6 @@ public interface Habilidad {
     boolean tieneUsos();    // Indica si se puede seguir usando
 
     int getUsosRestantes();
+
 }
+

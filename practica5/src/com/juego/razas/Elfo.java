@@ -58,4 +58,5 @@ public class Elfo implements Raza {
     public int vida() {
         return vida;
     }
+
 }

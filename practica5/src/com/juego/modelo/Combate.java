@@ -70,4 +70,5 @@ public class Combate {
         // Mostrar ganador
         System.out.println("\nGANADOR: " + (a.getVida() > 0 ? a.getNombre() : b.getNombre()));
     }
+
 }

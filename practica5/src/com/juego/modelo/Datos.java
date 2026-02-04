@@ -31,4 +31,5 @@ public class Datos {
     public void setVidaMax(int vidaMax) {
         this.vidaMax = vidaMax;
     }
+
 }

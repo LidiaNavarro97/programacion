@@ -30,4 +30,5 @@ public class CuraCuerpoACuerpo implements Habilidad{
     public int getUsosRestantes() {
         return usos;
     }
+
 }

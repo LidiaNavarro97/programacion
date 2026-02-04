@@ -36,4 +36,5 @@ public class Vista {
     public void listar(List<Personaje> p) {
 
     }
+
 }

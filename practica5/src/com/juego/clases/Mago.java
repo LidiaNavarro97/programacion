@@ -50,3 +50,4 @@ public class Mago implements Clase {
     }
 }
 
+

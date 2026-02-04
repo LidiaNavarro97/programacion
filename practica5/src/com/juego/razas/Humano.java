@@ -66,4 +66,5 @@ public class Humano implements Raza {
     public int vida() {
         return vida;
     }
+
 }

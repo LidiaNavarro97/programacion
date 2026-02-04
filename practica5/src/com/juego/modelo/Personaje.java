@@ -79,4 +79,5 @@ public class Personaje {
     public String toString() {
         return nombre + " HP:" + vida;
     }
+
 }

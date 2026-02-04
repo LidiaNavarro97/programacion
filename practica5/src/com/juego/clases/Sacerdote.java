@@ -49,5 +49,6 @@ public class Sacerdote implements Clase {
                 new DanioCuerpoACuerpo(nombre_ataque,valor_ataque),
         };
     }
+
 }
 

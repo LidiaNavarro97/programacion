@@ -48,4 +48,5 @@ public class VistaConsola extends Vista {
             System.out.println(i + " -> " + lista.get(i));
         }
     }
+
 }

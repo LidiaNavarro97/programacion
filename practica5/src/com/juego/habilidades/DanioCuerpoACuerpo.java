@@ -30,4 +30,5 @@ public class DanioCuerpoACuerpo implements Habilidad{
     public int getUsosRestantes() {
         return usos;
     }
+
 }

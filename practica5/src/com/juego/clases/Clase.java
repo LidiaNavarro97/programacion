@@ -11,3 +11,4 @@ public interface Clase {
 
     Habilidad[] getHabilidades();
 }
+
