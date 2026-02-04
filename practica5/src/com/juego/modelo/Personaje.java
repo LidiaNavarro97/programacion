@@ -1,47 +1,82 @@
 package com.juego.modelo;
 
-import com.juego.clases.Clase;
-import com.juego.habilidades.Habilidad;
-import com.juego.razas.Raza;
+import java.util.*;
+import com.juego.razas.*;
+import com.juego.clases.*;
+import com.juego.habilidades.*;
 
+// Clase que representa a un personaje del juego
 public class Personaje {
 
+    // Nombre del personaje
     private String nombre;
-    private Clase clase;
-    private Raza raza;
+
+    // Estadísticas base del personaje (fuerza, inteligencia, destreza y vida máxima)
     private Datos datos;
-    private int vidaActual;
 
-    public Personaje(String nombre, Clase clase, Raza raza) {
-        this.nombre = nombre;
-        this.clase = clase;
-        this.raza = raza;
-        this.vidaActual = 100; // por ejemplo
+    // Vida actual del personaje
+    private int vida;
+
+    // Lista de habilidades que posee el personaje
+    private List<Habilidad> habilidades;
+
+    // Constructor: recibe nombre, raza y clase del personaje
+    public Personaje(String n,Raza r,Clase c){
+
+        nombre=n;
+
+        datos =new Datos(
+                r.fuerza(),
+                r.inteligencia(),
+                r.destreza(),
+                r.vida()
+        );
+
+        datos.aplicarBonus(
+                c.fuerza(),
+                c.inteligencia(),
+                c.destreza()
+        );
+
+        datos.setVidaMax(c.vida());
+
+        vida= datos.getVidaMax();
+
+        habilidades=List.of(c.getHabilidades());
     }
 
-    // los get
-
-    public int getVida() {
-        return vidaActual;
-    }
-
+    // Devuelve el nombre del personaje
     public String getNombre() {
         return nombre;
     }
 
-    public Clase getClase() {
-        return clase;
+    // Devuelve la vida actual del personaje
+    public int getVida() {
+        return vida;
     }
 
-    public Raza getRaza() {
-        return raza;
+    // Devuelve la lista de habilidades del personaje
+    public List<Habilidad> getHabilidades() {
+        return habilidades;
     }
 
-    public String getVistaPersonaje() {
-        return nombre + " | " + clase + " | " + raza + " | Vida: " + vidaActual;
+    // Aplica daño al personaje
+    public void danio(int v) {
+        vida -= v;         // Resta vida
+        if (vida < 0)      // Evita vida negativa
+            vida = 0;
     }
 
-    public void setVida(int vidaActual) {
-        this.vidaActual = vidaActual;
+    // Aplica curación al personaje
+    public void curar(int v) {
+        vida += v;                          // Suma vida
+        if (vida > datos.getVidaMax())      // Limita la vida al máximo permitido
+            vida = datos.getVidaMax();
+    }
+
+    // Representación en texto del personaje: nombre y vida actual
+
+    public String toString() {
+        return nombre + " HP:" + vida;
     }
 }

@@ -19,7 +19,8 @@ public class Direccion {
 
 
     public String getCalle() {
-        return Calle;
+        this.
+         return Calle;
     }
 
     public int getNumero() {

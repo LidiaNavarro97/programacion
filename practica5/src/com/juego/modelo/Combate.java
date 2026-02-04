@@ -1,49 +1,73 @@
 package com.juego.modelo;
 
-import java.util.Scanner;
+import java.util.*;
 import com.juego.habilidades.*;
 
+// Clase que maneja un combate entre dos personajes
 public class Combate {
-
-    Personaje p1;
-    Personaje p2;
 
     private Scanner sc = new Scanner(System.in);
 
-    public Combate(Personaje p1, Personaje p2) {
-        this.p1 = p1;
-        this.p2 = p2;
-    }
+    // Inicia el combate entre dos personajes
+    public void iniciar(Personaje a, Personaje b) {
 
-    public void combate1() {
-        int contador = 1;
+        Personaje t = a; // jugador con turno
+        Personaje r = b; // rival
 
-        while(p1.getVida()>0 && p2.getVida()>0) {
-            System.out.println("Turno" +contador);
-            System.out.println(p1.getVistaPersonaje());
-            System.out.println(p2.getVistaPersonaje());
+        while (a.getVida() > 0 && b.getVida() > 0) {
 
-            //elegir la habilidad
-            this.elegirHabilidad();
+            System.out.println("\nTurno: " + t.getNombre());
 
-            //efecto habilidades
-            this.efectoHabilidades();
-            contador++;
+            // Mostrar habilidades disponibles con sus usos
+            int i = 1;
+            for (Habilidad h : t.getHabilidades()) {
+                System.out.println(i++ + ". " + h.getNombre() + " (Usos: " + h.getUsosRestantes() + ")");
+            }
+
+            // Leer habilidad elegida
+            int op;
+            while (true) {
+                System.out.print("Elige habilidad: ");
+                if (sc.hasNextInt()) {
+                    op = sc.nextInt() - 1;
+                    sc.nextLine(); // limpiar buffer
+                    if (op >= 0 && op < t.getHabilidades().size()) {
+                        Habilidad h = t.getHabilidades().get(op);
+                        if (h.tieneUsos()) {
+                            int v = h.usar();
+
+                            // Diferencia curación de daño
+                            if (h instanceof CuraCuerpoACuerpo) {
+                                t.curar(v);
+                                System.out.println(t.getNombre() + " se cura " + v + " HP");
+                            } else {
+                                r.danio(v);
+                                System.out.println(t.getNombre() + " hace " + v + " de daño a " + r.getNombre());
+                            }
+                            break;
+                        } else {
+                            System.out.println("Sin usos! Elige otra habilidad.");
+                        }
+                    } else {
+                        System.out.println("Opción inválida, elige otra habilidad.");
+                    }
+                } else {
+                    System.out.println("Por favor ingresa un número válido.");
+                    sc.nextLine(); // limpiar entrada inválida
+                }
+            }
+
+            // Mostrar estado actual
+            System.out.println(a.getNombre() + ": " + a.getVida() + " HP");
+            System.out.println(b.getNombre() + ": " + b.getVida() + " HP");
+
+            // Cambiar turno
+            Personaje aux = t;
+            t = r;
+            r = aux;
         }
 
-        if(p1.getVida()==0) {
-            System.out.println("El ganador es P1");
-        }
-        else {
-            System.out.println("El ganador es P2");
-        }
+        // Mostrar ganador
+        System.out.println("\nGANADOR: " + (a.getVida() > 0 ? a.getNombre() : b.getNombre()));
     }
-
-    private void elegirHabilidad() {
-    }
-
-    private void efectoHabilidades() {
-    }
-
-
 }

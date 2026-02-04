@@ -16,7 +16,7 @@ public class Hospital {
         this.CIF = CIF;
         this.areas = new ArrayList<>();
         this.direccion= direccion;
-    }
+    } 
     //get
     public ArrayList<Areas> getAreas() {
         return this.areas;

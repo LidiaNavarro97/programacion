@@ -11,7 +11,7 @@ public class GestorPersonaje {
 
     // Crea y devuelve un personaje
     public Personaje crearPersonaje(String nombre, Clase clase, Raza raza) {
-        return new Personaje(nombre, clase, raza);
+        return new Personaje(nombre, raza, clase);
     }
 
     // Metodo para agregar un personaje a la lista

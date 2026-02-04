@@ -13,18 +13,22 @@ public class Datos {
         this.fuerza = fuerza;       // fuerza base
         this.inteligencia = inteligencia;       // inteligencia base
         this.destreza = destreza;       // destreza base
-        vidaMax = vidaMax;      // vida máxima base
+        this.vidaMax = vidaMax;      // vida máxima base
     }
 
     // Aplica un bonus a las estadísticas (por ejemplo, de la clase del personaje)
-    public void bonus(int f, int i, int d){
-        this.fuerza += f;      // suma bonus a la fuerza
-        this.inteligencia += i;      // suma bonus a la inteligencia
-        this.destreza += d;      // suma bonus a la destreza
+    public void aplicarBonus(int fuerza, int inteligencia, int destreza){
+        this.fuerza += fuerza;      // suma bonus a la fuerza
+        this.inteligencia += inteligencia;      // suma bonus a la inteligencia
+        this.destreza += destreza ;      // suma bonus a la destreza
     }
 
     // Devuelve la vida máxima del personaje
     public int getVidaMax(){
         return vidaMax;
+    }
+
+    public void setVidaMax(int vidaMax) {
+        this.vidaMax = vidaMax;
     }
 }
