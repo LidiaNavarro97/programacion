@@ -2,6 +2,7 @@ import javax.imageio.stream.FileCacheImageOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class bloque2 {
     public static void main() {
@@ -78,10 +79,28 @@ public class bloque2 {
             }
         }
 
+        //EJERCICIO 10)
+        // Tienes un HashMap<String, ArrayList<String>> de Gremios (como en el ej. 7).
+        // Escribe un algoritmo que recorra todos los gremios y verifique si un aventurero llamado "Judas" está escondido en alguno de ellos.
+        // Si lo encuentra,debe imprimir en qué gremio está y eliminarlo de la lista de ese gremio inmediatamente.
 
+        System.out.println("Ejercicio 10: ");
 
+        eliminarTraidor(gremios, "Judas");
     }
 
+        public static void eliminarTraidor(HashMap<String, ArrayList<String>> gremios, String traidor) {
+            for (Map.Entry<String, ArrayList<String>> entry : gremios.entrySet()) {
+                ArrayList<String> miembros = entry.getValue();
+                if (miembros.contains(traidor)) {
+                    System.out.println("Traidor " + traidor + " encontrado en el gremio de los " + entry.getKey());
+                    miembros.remove(traidor);
+                    System.out.println("Traidor eliminado. Miembros restantes -> " + miembros);
+                    return;
+                }
+            }
+            System.out.println("Traidor no encontrado.");
+        }
 
 
         public static void imprimirGremio(HashMap<String, ArrayList<String>> gremios, String nombreGremio) {
