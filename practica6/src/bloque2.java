@@ -53,6 +53,16 @@ public class bloque2 {
         System.out.println("¿Se ha añadido otra vez la espada? -> " + duplicado);
         System.out.println("Loot del Trasgo: " + monstruos.get("Trasgo"));
 
+        //EJERCICIO 9)
+        //Crea un HashMap<String, HashMap<String, Integer>>.
+        //◦ La clave principal es el Nombre del Jugador.
+        //◦ El valor es OTRO HashMap que contiene sus estadísticas
+        //      (ej: {"Fuerza": 18, "Destreza": 12}).
+        //◦ Reto: Escribe el código para buscar a "Conan" y sumarle +2 a su estadística de "Fuerza".
+
+        System.out.println("Ejercicio 9: ");
+
+
     }
 
 
