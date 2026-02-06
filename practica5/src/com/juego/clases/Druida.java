@@ -16,6 +16,8 @@ public class Druida implements Clase{
     private int valor_cura;
     private int valor_distancia;
 
+    //CONSTRUCTOR
+
     public Druida( String nombre_ataque, String nombre_cura, String nombre_distancia, int valor_ataque, int valor_cura, int valor_distancia) {
         this.nombre_ataque = nombre_ataque;
         this.nombre_cura = nombre_cura;
