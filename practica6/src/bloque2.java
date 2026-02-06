@@ -62,6 +62,23 @@ public class bloque2 {
 
         System.out.println("Ejercicio 9: ");
 
+        HashMap<String, HashMap<String, Integer>> estadisticas = new HashMap<>();
+
+        HashMap<String, Integer> estadisticasConan = new HashMap<>();
+
+        estadisticasConan.put("Destreza",12);
+        estadisticasConan.put("Fuerza",18);
+        estadisticas.put("Conan", estadisticasConan);
+
+        if (estadisticas.containsKey("Conan")) {
+            HashMap<String, Integer> est = estadisticas.get("Conan");
+            if (est.containsKey("Fuerza")) {
+                est.put("Fuerza", est.get("Fuerza") + 2);
+                System.out.println(" Nueva Fuerza -> " + est.get("Fuerza"));
+            }
+        }
+
+
 
     }
 
