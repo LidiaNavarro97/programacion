@@ -109,6 +109,5 @@ public class bloque1 {
 
             System.out.println("Sauron ha sido derrotado.");
         }
-
     }
 }
