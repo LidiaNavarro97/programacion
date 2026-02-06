@@ -49,5 +49,6 @@ public class Paladin implements Clase{
                 new DanioCuerpoACuerpo(nombre_ataque,valor_ataque),
         };
     }
+
 }
 

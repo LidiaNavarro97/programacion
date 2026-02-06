@@ -49,5 +49,10 @@ public class Monje implements Clase{
                 new DanioCuerpoACuerpo(nombre_ataque,valor_ataque),
         };
     }
+
 }
+
+
+
+
 

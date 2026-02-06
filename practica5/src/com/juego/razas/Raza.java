@@ -6,4 +6,5 @@ public interface Raza {
     int inteligencia();
     int destreza();
     int vida();
+
 }
