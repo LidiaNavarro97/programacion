@@ -1,7 +1,7 @@
 
 
 import java.util.Scanner;
-public class ejercicio8 {
+public class  ejercicio8 {
         public static void main(String[] args) {
 
             //Leer la altura de N personas y calcular la altura media.

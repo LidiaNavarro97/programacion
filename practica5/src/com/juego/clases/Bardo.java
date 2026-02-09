@@ -49,5 +49,6 @@ public class Bardo implements Clase{
                 new DanioCuerpoACuerpo(nombre_ataque,valor_ataque),
         };
     }
+
 }
 

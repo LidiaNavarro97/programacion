@@ -1,5 +1,4 @@
 package com.juego.clases;
-
 import com.juego.habilidades.CuraCuerpoACuerpo;
 import com.juego.habilidades.DanioADistancia;
 import com.juego.habilidades.DanioCuerpoACuerpo;
@@ -52,4 +51,5 @@ public class Druida implements Clase{
         };
     }
 }
+
 
