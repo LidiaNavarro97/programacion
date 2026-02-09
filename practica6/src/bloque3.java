@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class bloque3 {
-    public static void main(String[]) {
+    public static void main() {
 
 
 
@@ -27,6 +27,7 @@ public class bloque3 {
         // Creo el HashMap que relaciona ciudades con los ítems que tienen en stock
         HashMap<String, ArrayList<String>> ciudades = new HashMap<>();
         // Añado la ciudad "Guada" con su lista de ítems
+        // EL List.of sirve para crear la lista de forma rapida y que no se pueda modificar
         ciudades.put("Guada", new ArrayList<>(List.of("Espada", "Escudo", "Poción", "Arco", "Casco", "Anillo" )));
 
         // Mostramos los precios de los ítems en la ciudad Guada
@@ -68,6 +69,8 @@ public class bloque3 {
         // El segundo Map contiene las Habilidades y un booleano que indica si están Bloqueadas o Desbloqueadas.
 
         System.out.println("\nEJERCICIO 13:");
+
+
 
 
         //EJERCICIO 14)
