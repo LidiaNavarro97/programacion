@@ -113,7 +113,6 @@ public class casaSubastas {
                 listaPujas.remove(mejorPuja);
             }
         }
-
         // Si salimos del while significa que no había ninguna puja válida
         System.out.println("No hay pujas válidas para el item.");
     }
