@@ -1,6 +1,7 @@
 # PROGRAMACION
 Estructura del repositorio:
 ```bash
+
 📁 PROJECT
 ├── 📁 .idea
 ├── 📁 Herencia_Interfaces
@@ -35,5 +36,14 @@ Estructura del repositorio:
 │   │       └── 📁 razas
 │   ├── 📄 Main.java
 │   └── ⚙️ practica5.iml
+├── 🌿 practica6
+│   ├── 📄 bloque1.java
+│   ├── 📄 bloque2.java
+│   ├── 📄 bloque3.java
+│   ├── 📄 puja.java
+│   ├── 📄 casaSubastas.java
+│   ├── 📄 Main.java
 └── 🌿 practicaPOO
+```
+
 
