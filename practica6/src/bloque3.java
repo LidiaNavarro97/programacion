@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class bloque3 {
-    public static void main() {
+
+    public static void main(String[] args) {
 
 
         // EJERCICIO 11)
@@ -66,7 +67,7 @@ public class bloque3 {
         //Usa un HashMap<String, List<HashSet<String>>>. La clave es el Nombre de la Mazmorra.
         // El valor es una Lista de todas las veces que se ha completado (Raids).
         // Cada entrada en la lista es un HashSet con los nombres de los jugadores que participaron (para evitar que el mismo jugador cuente dos veces en la misma incursión).
-        //  • El Reto: Escribe un algoritmo que recorra todo el historial y encuentre al "Jugador Más Valioso" (el nombre que más veces aparece en todas las incursiones de todas las mazmorras).
+        //  • El Reto: Escribe un algoritmo que recorra todo el historial y encuentre al "Jugador Mas Valioso" (el nombre que mas veces aparece en todas las incursiones de todas las mazmorras).
 
         System.out.println("\nEJERCICIO 13:");
 
@@ -136,6 +137,8 @@ public class bloque3 {
         System.out.println("Jugador Más Valioso: " + jugadorMasValioso);
         System.out.println("Participaciones totales: " + maxParticipaciones);
 
+        System.out.println("--------------------------------------------------------------------------------------");
+
 
         //EJERCICIO 14)
         //Crea un HashMap<String, List<String>> que almacene los mensajes enviados por cada jugador.
@@ -198,9 +201,10 @@ public class bloque3 {
         System.out.println("\nHistorial de mensajes tras el filtro:");
         System.out.println(mensajes);
 
+        System.out.println("--------------------------------------------------------------------------------------");
 
         //EJERCICIO 15)
-        //Imagina una estructura HashMap<String, PriorityQueue<Double>> (o usa un ArrayList y ordénalo).
+        // Imagina una estructura HashMap<String, PriorityQueue<Double>> (o usa un ArrayList y ordénalo).
         // La clave es el Nombre del Item (ej: "Excalibur") y el valor es una lista de las Pujas actuales (números decimales).
         // ◦ El Reto: Escribe un metodo procesarVenta que:
         //   1. Tome el item con la puja más alta.
@@ -209,13 +213,30 @@ public class bloque3 {
 
         System.out.println("\nEJERCICIO 15:");
 
+        // Creamos la casa de subastas
+        casaSubastas casa = new casaSubastas();
 
+        // Creamos jugadores
+        casa.agregarJugador("Merlin", 500);
+        casa.agregarJugador("Lancelot", 300);
+        casa.agregarJugador("Josemi", 1000);
 
-        // Metodo mas abajo
+        // Creamos item
+        casa.agregarItem("Excalibur");
 
+        // Creamos pujas
+        casa.agregarPuja("Excalibur", new puja("Merlin", 600));
+        casa.agregarPuja("Excalibur", new puja("Lancelot", 250));
+        casa.agregarPuja("Excalibur", new puja("Josemi", 800));
 
-        // MÉTODOS
+        // Procesamos la venta
+        casa.procesarVenta("Excalibur");
+
+        // Mostramos los saldos finales
+        casa.mostrarSaldos();
     }
+    // MÉTODOS
+
 
     // metodo del ejercicio 11
 
@@ -257,8 +278,8 @@ public class bloque3 {
         habilidades.put("Golpe Divino", true);
         System.out.println("Golpe Divino desbloqueado correctamente.");
     }
-
-
-    // metodo del ejercicio 15
-
 }
+
+
+
+
