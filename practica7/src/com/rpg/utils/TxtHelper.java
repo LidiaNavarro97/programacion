@@ -8,6 +8,8 @@ import java.util.List;
 
 public class TxtHelper {
 
+    public TxtHelper(){ }
+
     public static List<Ciudades> leerCiudades() {
 
         List<Ciudades> listaCiudades = new ArrayList<>();
@@ -30,8 +32,14 @@ public class TxtHelper {
                 listaCiudades.add(c);
             }
 
+            for (Ciudades c : listaCiudades) {
+                System.out.println(c.getNombre());
+            }
+
+
         } catch (IOException e) {
-            System.out.println("No se ha podido abrir el fichero.");
+            System.out.println("No se ha podido abrir el fichero -> " + e.getMessage());
+            return listaCiudades;
         }
 
         return listaCiudades;
