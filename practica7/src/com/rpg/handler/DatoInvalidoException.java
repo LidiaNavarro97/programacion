@@ -1,5 +1,7 @@
 package com.rpg.handler;
 
-public class DatoInvalidoException {
-
+public class DatoInvalidoException extends RPGDataException {
+    public DatoInvalidoException(String message) {
+        super(message);
+    }
 }
