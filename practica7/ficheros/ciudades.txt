@@ -1,0 +1,4 @@
+Guada;5000;Soleado;3
+Jerez;20000;Nublado;1
+Puerto;1000;Lluvioso;2
+Chiclana;8000;Soleado;4
