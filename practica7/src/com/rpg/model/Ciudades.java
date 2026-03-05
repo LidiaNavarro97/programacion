@@ -46,4 +46,8 @@ public class Ciudades {
         this.riesgo = riesgo;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
