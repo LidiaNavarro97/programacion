@@ -1,5 +1,6 @@
 # PROGRAMACION
-Estructura del repositorio:
+Repositorio de la alumna: Lidia Navarro Estepa
+
 ```bash
 
 📁 PROJECT
