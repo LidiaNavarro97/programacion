@@ -1,20 +1,5 @@
 [
-  {
-    "nombre": "Aragon",
-    "raza": "Humano",
-    "nivel": 20,
-    "equipoIds": ["A01"]
-  },
-  {
-    "nombre": "Josemi",
-    "raza": "Enano",
-    "nivel": 30,
-    "equipoIds": ["A02"]
-  },
-  {
-    "nombre": "Legolas",
-    "raza": "Elfo",
-    "nivel": 25,
-    "equipoIds": ["A03"]
-  }
+  {"nombre":"Aragon","raza":"Humano","nivel":20},
+  {"nombre":"Josemi","raza":"Enano","nivel":30},
+  {"nombre":"Legolas","raza":"Elfo","nivel":25}
 ]

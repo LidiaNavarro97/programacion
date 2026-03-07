@@ -119,5 +119,10 @@ public class GestionMundo {
         JsonHelper.guardarPersonajes(personajes);
     }
 
+    public void guardarPersonajes() {
+        JsonHelper.guardarPersonajes(personajes);
+        System.out.println("Personajes guardados correctamente. ");
+    }
+
 
 }
