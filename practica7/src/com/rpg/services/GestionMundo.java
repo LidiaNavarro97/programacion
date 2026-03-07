@@ -76,18 +76,20 @@ public class GestionMundo {
         //lista donde voy a guardar los items de verdad
         List<Item> equipo = new ArrayList<>();
 
+        //para el log del nivel
         if (nivel < 0) {
-            throw new DatoInvalidoException("Nivel negativo no permitido"); //para el log
+            throw new DatoInvalidoException("Nivel negativo no permitido");
         }
 
         //recorro los ids
         for (String id : idsItems) {
             Item item = mapaItems.get(id); //busco el item en el mapa
 
+            //para el log de los item
             if (item != null) {
                 equipo.add(item); //si existe lo añado al equipo
             } else {
-                throw new RecursoNoEncontradoException("Item no encontrado: " + id); //para el log
+                throw new RecursoNoEncontradoException("Item no encontrado: " + id);
             }
 
         }
