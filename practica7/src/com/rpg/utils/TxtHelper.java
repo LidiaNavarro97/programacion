@@ -8,7 +8,8 @@ import java.util.List;
 
 public class TxtHelper {
 
-    public TxtHelper(){ }
+    public TxtHelper() {
+    }
 
     public static List<Ciudades> leerCiudades() {
 
@@ -20,28 +21,37 @@ public class TxtHelper {
 
             for (String linea : lineas) {
 
-                String[] s = linea.split(";");
+                try {
 
-                Ciudades c = new Ciudades(
-                        s[0],
-                        Integer.parseInt(s[1]),
-                        s[2],
-                        Integer.parseInt(s[3])
-                );
+                    String[] s = linea.split(";");
 
-                listaCiudades.add(c);
+                    if (s.length != 4) {
+                        throw new Exception("Formato incorrecto: " + linea);
+                    }
+
+                    Ciudades c = new Ciudades(
+                            s[0],
+                            Integer.parseInt(s[1]),
+                            s[2],
+                            Integer.parseInt(s[3])
+                    );
+
+                    listaCiudades.add(c);
+
+
+                } catch (IOException e) {
+                    LoggerCustom.logError("Error leyendo ciudad : " + linea);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
-
-            for (Ciudades c : listaCiudades) {
-                System.out.println(c.getNombre());
-            }
-
 
         } catch (IOException e) {
-            System.out.println("No se ha podido abrir el fichero -> " + e.getMessage());
-            return listaCiudades;
+            LoggerCustom.logError("No se pudo abrir ciudades.txt ");
+
         }
 
         return listaCiudades;
     }
 }
+
