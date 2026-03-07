@@ -35,7 +35,7 @@ Repositorio de la alumna: Lidia Navarro Estepa
 │   │       ├── 📁 modelo
 │   │       ├── 📁 presentacion
 │   │       └── 📁 razas
-│   ├── 📄 Main.java
+│   ├── 📄 com.rpg.main.Main.java
 │   └── ⚙️ practica5.iml
 ├── 🌿 practica6
 │   ├── 📄 bloque1.java
@@ -43,7 +43,7 @@ Repositorio de la alumna: Lidia Navarro Estepa
 │   ├── 📄 bloque3.java
 │   ├── 📄 puja.java
 │   ├── 📄 casaSubastas.java
-│   ├── 📄 Main.java
+│   ├── 📄 com.rpg.main.Main.java
 └── 🌿 practicaPOO
 ```
 
