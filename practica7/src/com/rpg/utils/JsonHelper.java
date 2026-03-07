@@ -21,9 +21,9 @@ public class JsonHelper {
         try {
             FileReader reader = new FileReader("practica7/ficheros/items.json");
             Gson g = new Gson();
-            List<Item> lista = g.fromJson(reader, new TypeToken<List<Item>>() {}.getType());
+            listaItem = g.fromJson(reader, new TypeToken<List<Item>>() {}.getType());
 
-            for (Item l : lista) {
+            for (Item l : listaItem) {
                 System.out.println(l.getNombre());
             }
 
@@ -40,9 +40,9 @@ public class JsonHelper {
         try {
             FileReader reader = new FileReader("practica7/ficheros/personajes.json");
             Gson g = new Gson();
-            List<Personaje> lista = g.fromJson(reader, new TypeToken<List<Personaje>>() {}.getType());
+            listaPersonaje = g.fromJson(reader, new TypeToken<List<Personaje>>() {}.getType());
 
-            for (Personaje p : lista){
+            for (Personaje p : listaPersonaje){
                 System.out.println(p.getNombre());
             }
 
