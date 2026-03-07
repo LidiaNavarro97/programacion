@@ -1,11 +1,14 @@
 package com.rpg.services;
 
+import com.rpg.handler.DatoInvalidoException;
+import com.rpg.handler.RecursoNoEncontradoException;
 import com.rpg.model.Ciudades;
 import com.rpg.model.Item;
 import com.rpg.model.Personaje;
 import com.rpg.utils.JsonHelper;
 import com.rpg.utils.TxtHelper;
 
+import java.awt.*;
 import java.lang.classfile.ClassFile;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,13 +66,19 @@ public class GestionMundo {
 
     //CREO UN PERSONAJE NUEVO
 
-    public void crearPersonaje (String nombre, String raza, List<String> idsItems){
+    public void crearPersonaje(String nombre, String raza, int nivel, List<String> idsItems)
+            throws RecursoNoEncontradoException, DatoInvalidoException {
 
-        //creo un personaje con nivel 1
-        Personaje nuevo = new Personaje(nombre, raza, 1);
+
+        //creo un personaje
+        Personaje nuevo = new Personaje(nombre, raza, nivel);
 
         //lista donde voy a guardar los items de verdad
         List<Item> equipo = new ArrayList<>();
+
+        if (nivel < 0) {
+            throw new DatoInvalidoException("Nivel negativo no permitido"); //para el log
+        }
 
         //recorro los ids
         for (String id : idsItems) {
@@ -78,8 +87,9 @@ public class GestionMundo {
             if (item != null) {
                 equipo.add(item); //si existe lo añado al equipo
             } else {
-                System.out.println("Item no encontrado: " + id); //sino existe pues lo aviso
+                throw new RecursoNoEncontradoException("Item no encontrado: " + id); //para el log
             }
+
         }
 
         //asigno el equipo al personaje nuevo y lo añado a la lista
@@ -94,7 +104,7 @@ public class GestionMundo {
     public void mostrarPersonaje () {
 
         for (Personaje p : personajes) {
-            System.out.println("Otro personajee: " + p.getNombre());
+            System.out.println("Personajes: " + p.getNombre());
 
             for (Item i : p.getEquipo()) {
                 System.out.println(" Item: " + i.getNombre());
