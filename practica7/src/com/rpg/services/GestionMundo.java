@@ -6,6 +6,7 @@ import com.rpg.model.Personaje;
 import com.rpg.utils.JsonHelper;
 import com.rpg.utils.TxtHelper;
 
+import java.lang.classfile.ClassFile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,8 +40,12 @@ public class GestionMundo {
         System.out.println("Cargando ciudades...");
         ciudades = TxtHelper.leerCiudades();
 
+        System.out.println("---------------------------"); //para que quede mejor al ejecutarlo
+
         System.out.println("Cargando items...");
         items = JsonHelper.leerItem();
+
+        System.out.println("---------------------------");
 
         System.out.println("Cargando personajes...");
         personajes = JsonHelper.leerPersonaje();
@@ -51,9 +56,50 @@ public class GestionMundo {
         for (Item i : items) {
             mapaItems.put(i.getId(), i);
         }
-
+        System.out.println("---------------------------");
         System.out.println("Items cargados: " + mapaItems.size());
     }
 
+
+    //CREO UN PERSONAJE NUEVO
+
+    public void crearPersonaje (String nombre, String raza, List<String> idsItems){
+
+        //creo un personaje con nivel 1
+        Personaje nuevo = new Personaje(nombre, raza, 1);
+
+        //lista donde voy a guardar los items de verdad
+        List<Item> equipo = new ArrayList<>();
+
+        //recorro los ids
+        for (String id : idsItems) {
+            Item item = mapaItems.get(id); //busco el item en el mapa
+
+            if (item != null) {
+                equipo.add(item); //si existe lo añado al equipo
+            } else {
+                System.out.println("Item no encontrado: " + id); //sino existe pues lo aviso
+            }
+        }
+
+        //asigno el equipo al personaje nuevo y lo añado a la lista
+        nuevo.setEquipo(equipo);
+        personajes.add(nuevo);
+        System.out.println("Personaje creado: " + nombre);
+    }
+
+
+    //muestro el personaje
+
+    public void mostrarPersonaje () {
+
+        for (Personaje p : personajes) {
+            System.out.println("Otro personajee: " + p.getNombre());
+
+            for (Item i : p.getEquipo()) {
+                System.out.println(" Item: " + i.getNombre());
+            }
+        }
+    }
 
 }
