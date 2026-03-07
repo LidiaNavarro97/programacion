@@ -7,6 +7,7 @@ import com.rpg.model.Personaje;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,24 @@ public class JsonHelper {
             throw new RuntimeException(e);
         }
         return listaPersonaje;
+    }
+
+
+    //ESTO ME LO HA HECHO CHATGPT, me quede aqui atascada no sabia como hacer esta parte.
+
+    public static void guardarPersonajes (List<Personaje> personajes) {
+
+        try {
+            Gson gson = new Gson();
+            FileWriter writer = new FileWriter("practica7/ficheros/personajes.json");
+
+            gson.toJson(personajes, writer); //gson cpnvierte la lista a JSON y la escribe en el archivo
+            writer.close(); //cerramos el archivo
+            System.out.println("Personajes guardados correctamente.");
+
+        } catch (Exception e) {
+            System.out.println("Error guardando los personajes.");
+        }
     }
 }
 
