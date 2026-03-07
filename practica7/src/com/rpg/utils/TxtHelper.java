@@ -51,6 +51,9 @@ public class TxtHelper {
 
         }
 
+        for(Ciudades c : listaCiudades){
+            System.out.println(c.getNombre());
+        }
         return listaCiudades;
     }
 }

@@ -3,12 +3,18 @@
     "nombre": "Aragon",
     "raza": "Humano",
     "nivel": 20,
-    "equipoIds": ["E01"]
+    "equipoIds": ["A01"]
   },
   {
     "nombre": "Josemi",
     "raza": "Enano",
     "nivel": 30,
-    "equipoIds": ["E02"]
+    "equipoIds": ["A02"]
+  },
+  {
+    "nombre": "Legolas",
+    "raza": "Elfo",
+    "nivel": 25,
+    "equipoIds": ["A03"]
   }
 ]

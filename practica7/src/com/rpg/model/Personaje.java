@@ -30,6 +30,9 @@ public class Personaje {
         return nivel;
     }
     public List<Item> getEquipo(){
+        if (equipo == null) {
+            equipo = new ArrayList<>();
+        }
         return equipo;
     }
 
