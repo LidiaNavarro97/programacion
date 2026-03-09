@@ -31,7 +31,7 @@ public class Personaje {
     }
     public List<Item> getEquipo(){
         if (equipo == null) {
-            equipo = new ArrayList<>();
+            equipo = new ArrayList<>(); //crear la lista sino existe
         }
         return equipo;
     }
@@ -47,7 +47,6 @@ public class Personaje {
     public void setNivel(int nivel){
         this.nivel = nivel;
     }
-
     public void setEquipo(List<Item> equipo) {
         this.equipo = equipo;
     }

@@ -115,14 +115,12 @@ public class GestionMundo {
     }
 
     //Este metodo en el JsonHelper me lo ha hecho ChatGPT
-    public void guardarCambios() {
-        JsonHelper.guardarPersonajes(personajes);
-    }
 
     public void guardarPersonajes() {
         JsonHelper.guardarPersonajes(personajes);
         System.out.println("Personajes guardados correctamente. ");
     }
-
-
+    public void guardarCambios() {
+        JsonHelper.guardarPersonajes(personajes);
+    }
 }

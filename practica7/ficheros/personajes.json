@@ -1,5 +1,1 @@
-[
-  {"nombre":"Aragon","raza":"Humano","nivel":20},
-  {"nombre":"Josemi","raza":"Enano","nivel":30},
-  {"nombre":"Legolas","raza":"Elfo","nivel":25}
-]
+[{"nombre":"Aragon","raza":"Humano","nivel":20},{"nombre":"Josemi","raza":"Enano","nivel":30},{"nombre":"Legolas","raza":"Elfo","nivel":25}]
