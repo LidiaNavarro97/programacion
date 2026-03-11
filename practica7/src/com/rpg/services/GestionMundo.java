@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.rpg.utils.LoggerCustom;
 
 public class GestionMundo {
 
@@ -40,87 +41,94 @@ public class GestionMundo {
 
     public void cargarTodo() {
 
-        System.out.println("Cargando ciudades...");
+        System.out.println("----------------------------------------");
+        System.out.println("CIUDADES: ");
+        System.out.println("----------------------------------------");
         ciudades = TxtHelper.leerCiudades();
 
-        System.out.println("---------------------------"); //para que quede mejor al ejecutarlo
-
-        System.out.println("Cargando items...");
+        System.out.println("----------------------------------------");
+        System.out.println("ITEMS: ");
+        System.out.println("----------------------------------------");
         items = JsonHelper.leerItem();
 
-        System.out.println("---------------------------");
-
-        System.out.println("Cargando personajes...");
+        System.out.println("----------------------------------------");
+        System.out.println("PERSONAJES: ");
+        System.out.println("----------------------------------------");
         personajes = JsonHelper.leerPersonaje();
 
 
-    //hago un foreach para crear un mapa de items, asi guardo la clave id y el valor que seria el objeto Item
+        //hago un foreach para crear un mapa de items, asi guardo la clave id y el valor que seria el objeto Item
 
         for (Item i : items) {
             mapaItems.put(i.getId(), i);
         }
-        System.out.println("---------------------------");
-        System.out.println("Items cargados: " + mapaItems.size());
+        System.out.println("----------------------------------------");
+        System.out.println("Items: " + mapaItems.size());
+        System.out.println("Personajes: " + personajes.size());
+        System.out.println("----------------------------------------");
     }
 
 
     //CREO UN PERSONAJE NUEVO
 
-    public void crearPersonaje(String nombre, String raza, int nivel, List<String> idsItems)
-            throws RecursoNoEncontradoException, DatoInvalidoException {
+    public void crearPersonaje(String nombre, String raza, int nivel, List<String> idsItems) {
 
+        try {
 
-        //creo un personaje
-        Personaje nuevo = new Personaje(nombre, raza, nivel);
-
-        //lista donde voy a guardar los items de verdad
-        List<Item> equipo = new ArrayList<>();
-
-        //para el log del nivel
-        if (nivel < 0) {
-            throw new DatoInvalidoException("Nivel negativo no permitido");
-        }
-
-        //recorro los ids
-        for (String id : idsItems) {
-            Item item = mapaItems.get(id); //busco el item en el mapa
-
-            //para el log de los item
-            if (item != null) {
-                equipo.add(item); //si existe lo añado al equipo
-            } else {
-                throw new RecursoNoEncontradoException("Item no encontrado: " + id);
+            if (nivel < 0) {
+                throw new DatoInvalidoException("Nivel negativo no permitido");
             }
 
-        }
+            Personaje nuevo = new Personaje(nombre, raza, nivel);
 
-        //asigno el equipo al personaje nuevo y lo añado a la lista
-        nuevo.setEquipo(equipo);
-        personajes.add(nuevo);
-        System.out.println("Personaje creado: " + nombre);
+            List<Item> equipo = new ArrayList<>();
+
+            for (String id : idsItems) {
+
+                Item item = mapaItems.get(id);
+
+                if (item == null) {
+                    throw new RecursoNoEncontradoException("Item no encontrado: " + id);
+                }
+
+                equipo.add(item);
+            }
+
+            nuevo.setEquipo(equipo);//asigno el equipo al personaje nuevo y lo añado a la lista
+            personajes.add(nuevo);
+
+            System.out.println("PERSONAJES NUEVOS CREADOS: ");
+            System.out.println("Personaje nuevo: " + nombre);
+            System.out.println("----------------------------------------");
+
+        } catch (DatoInvalidoException | RecursoNoEncontradoException e) {
+
+            LoggerCustom.logError(e.getMessage());
+
+        }
     }
 
 
     //muestro el personaje
 
-    public void mostrarPersonaje () {
+    public void mostrarPersonaje() {
 
-        for (Personaje p : personajes) {
-            System.out.println("Personajes: " + p.getNombre());
-
-            for (Item i : p.getEquipo()) {
-                System.out.println(" Item: " + i.getNombre());
+        int contador = 1; //pobgo este contador para que quede mas bonito a la hora de mostrarlo por pantalla
+        for (Personaje p : personajes) { //recorro los personajes
+            System.out.println("PERSONAJE " + contador++);
+            System.out.println("Personajes: " + p.getNombre() + " -> Nivel: " + p.getNivel());
+            for (Item i : p.getEquipo()) { //los item q tiene cada personaje
+                System.out.println(" Items: " + i.getNombre());
             }
+            System.out.println("----------------------------------------");
         }
     }
 
     //Este metodo en el JsonHelper me lo ha hecho ChatGPT
 
     public void guardarPersonajes() {
-        JsonHelper.guardarPersonajes(personajes);
+        JsonHelper.guardarPersonajes(personajes); //guardo los personajes en el json
         System.out.println("Personajes guardados correctamente. ");
     }
-    public void guardarCambios() {
-        JsonHelper.guardarPersonajes(personajes);
-    }
 }
+
