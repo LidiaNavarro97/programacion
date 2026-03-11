@@ -1,5 +1,10 @@
 [
   {"nombre":"Aragon","raza":"Humano","nivel":20,"equipo":[]},
   {"nombre":"Josemi","raza":"Enano","nivel":30,"equipo":[]},
-  {"nombre":"Legolas","raza":"Elfo","nivel":25,"equipo":[]}
+  {"nombre":"Legolas","raza":"Elfo","nivel":25,"equipo":[]},
+  {"nombre":"Daniel","raza":"Humano","nivel":50,"equipo":[
+    {"id":"A01","nombre":"Hacha","tipo":"Arma","valor":100},
+    {"id":"A02","nombre":"Pocion","tipo":"Consumible","valor":200}]},
+  {"nombre":"Lidia","raza":"Elfo","nivel":3,"equipo":[
+    {"id":"A03","nombre":"Cuchillo","tipo":"Arma","valor":200}]}
 ]

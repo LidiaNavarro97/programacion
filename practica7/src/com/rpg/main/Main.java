@@ -15,17 +15,18 @@ public class Main {
         List<String> items = new ArrayList<>(); //listo los items para el primer personaje
         items.add("A01"); //le voy a poner estos items a mi personaje daniel
         items.add("A02");
-        gm.crearPersonaje("Daniel", "Humano", 100, items); //aqui le meto un nivel negativo para q me de error
+        gm.crearPersonaje("Daniel", "Humano", 50, items); //aqui le meto un nivel negativo para q me de error
 
 
         List<String> ids = new ArrayList<>();
-        ids.add("A02");
+        ids.add("A03");
         gm.crearPersonaje("Lidia", "Elfo", 3, ids); //le he añadido un item que no existe para q de error
 
         gm.mostrarPersonaje(); //muestro los personajes cargados
 
         //comento y descomento el siguiente metodo para comprobaciones sin que se me guarden en el archivo
 
-        //gm.guardarPersonajes(); //guardo los cambios en el json
+        gm.guardarPersonajes(); //guardo los cambios en el json.
+
     }
 }
