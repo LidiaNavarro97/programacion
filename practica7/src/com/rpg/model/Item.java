@@ -6,13 +6,15 @@ public class Item {
     private String nombre;
     private String tipo;
     private int valor;
+    private int peso;
 
-    public Item( String id, String nombre, String tipo, int valor){
+    public Item( String id, String nombre, String tipo, int valor, int peso){
 
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         this.valor = valor;
+        this.peso = peso;
 
     }
 
@@ -30,6 +32,7 @@ public class Item {
     public int getValor(){
         return valor;
     }
+    public int getPeso() { return peso; }
 
     //SET
 
@@ -45,5 +48,6 @@ public class Item {
     public void setValor(int valor){
         this.valor = valor;
     }
+    public void setPeso(int peso) { this.peso = peso; }
 
 }

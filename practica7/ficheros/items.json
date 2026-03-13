@@ -1,5 +1,5 @@
 [
-  {"id": "A01", "nombre": "Hacha", "tipo": "Arma", "valor": 100},
-  {"id": "A02", "nombre": "Pocion", "tipo": "Consumible", "valor": 200},
-  {"id": "A03", "nombre": "Cuchillo", "tipo": "Arma", "valor": 200}
+  {"id": "A01", "nombre": "Hacha", "tipo": "Arma", "valor": 100, "peso": 500},
+  {"id": "A02", "nombre": "Pocion", "tipo": "Consumible", "valor": 200, "peso": 800},
+  {"id": "A03", "nombre": "Cuchillo", "tipo": "Arma", "valor": 200, "peso": 9000}
 ]
