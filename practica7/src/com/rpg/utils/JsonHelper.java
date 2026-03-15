@@ -54,6 +54,7 @@ public class JsonHelper {
     }
 
 
+
     //ESTO ME LO HA HECHO CHATGPT, me quede aqui atascada no sabia como hacer esta parte.
 
     public static void guardarPersonajes (List<Personaje> personajes) {
