@@ -11,11 +11,14 @@ public class Main {
 
             GestionMundo gm = new GestionMundo();
             gm.cargarTodo(); //Carga todos los datos del archivo
-            gm.validacionDatos();
+
 
             List<String> items = new ArrayList<>(); //listo los items para el primer personaje
             items.add("A01"); //le voy a poner estos items a mi personaje daniel
-            gm.crearPersonaje("Daniel", "Humano", 100,80 ,40, items); //aqui le meto un nivel negativo para q me de error
+            gm.crearPersonaje("Daniel", "Humano", 100,10 ,2, items); //aqui le meto un nivel negativo para q me de error
+
+            gm.validacionDatos();
+
 
             //List<String> ids = new ArrayList<>();
             // ids.add("A02");

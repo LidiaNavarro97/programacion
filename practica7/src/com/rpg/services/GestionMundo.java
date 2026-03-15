@@ -85,7 +85,7 @@ public class GestionMundo {
         try {
             if (pesoEquipo > cargaMax) {
                 System.out.println("Sobrecarga " + p.getNombre());
-                //throw new SobrecargaEquipamiento(p.getNombre() + " supera la capacidad "); //lanzo la excepcion
+                throw new SobrecargaEquipamiento(p.getNombre() + " supera la capacidad "); //lanzo la excepcion
             }
         } catch (Exception e) {
             LoggerCustom.logError(e.getMessage());
