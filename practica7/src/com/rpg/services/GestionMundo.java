@@ -2,6 +2,7 @@ package com.rpg.services;
 
 import com.rpg.handler.DatoInvalidoException;
 import com.rpg.handler.RecursoNoEncontradoException;
+import com.rpg.handler.SobrecargaEquipamiento;
 import com.rpg.model.Ciudades;
 import com.rpg.model.Item;
 import com.rpg.model.Personaje;
@@ -35,6 +36,7 @@ public class GestionMundo {
         items = new ArrayList<>();
         personajes = new ArrayList<>();
         mapaItems = new HashMap<>();
+        this.cargarTodo();
     }
 
     //cargo los datos
@@ -66,22 +68,46 @@ public class GestionMundo {
         System.out.println("Items: " + mapaItems.size());
         System.out.println("Personajes: " + personajes.size());
         System.out.println("----------------------------------------");
+
+    }
+
+    public void validacionDatos() throws SobrecargaEquipamiento{
+        for (Personaje p: personajes) {
+            int pesoEquipo = 0;
+            for (Item i: p.getEquipo()) {
+                //sumo el peso de cada item
+                pesoEquipo += i.getPeso();
+            }
+            //calculo la carga maxima
+            int cargaMax = p.getFuerza() * 5;
+
+        //compruebo que el peso total del equipo supere la carga
+        try {
+            if (pesoEquipo > cargaMax) {
+                System.out.println("Sobrecarga " + p.getNombre());
+                throw new SobrecargaEquipamiento(p.getNombre() + " supera la capacidad "); //lanzo la excepcion
+            }
+        } catch (Exception e) {
+            LoggerCustom.logError(e.getMessage());
+        }
+        }
     }
 
 
     //CREO UN PERSONAJE NUEVO
 
-    public void crearPersonaje(String nombre, String raza, int nivel, List<String> idsItems) {
+    public void crearPersonaje(String nombre, String raza, int nivel, int peso, int fuerza, List<String> idsItems) {
 
         try {
+
+            Personaje nuevo = new Personaje(nombre, raza, nivel, peso, fuerza);
+
+            List<Item> equipo = new ArrayList<>();
+
 
             if (nivel < 0) {
                 throw new DatoInvalidoException("Nivel negativo no permitido");
             }
-
-            Personaje nuevo = new Personaje(nombre, raza, nivel);
-
-            List<Item> equipo = new ArrayList<>();
 
             for (String id : idsItems) {
 
@@ -93,6 +119,8 @@ public class GestionMundo {
 
                 equipo.add(item);
             }
+
+
 
             nuevo.setEquipo(equipo);//asigno el equipo al personaje nuevo y lo añado a la lista
             personajes.add(nuevo);
