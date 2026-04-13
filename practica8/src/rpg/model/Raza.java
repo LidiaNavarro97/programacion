@@ -16,8 +16,31 @@ public class Raza {
     }
 
     // GETTER
-    public int getId() { return id; }
-    public String getNombre() { return nombre; }
-    public int getBonificadorVida() { return bonificadorVida; }
-    public int getBonificadorFuerza() { return bonificadorFuerza; }
+    public int getId() {
+        return id;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public int getBonificadorVida() {
+        return bonificadorVida;
+    }
+    public int getBonificadorFuerza() {
+        return bonificadorFuerza;
+    }
+
+    // SETTER
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public void setBonificadorVida(int bonificadorVida) {
+        this.bonificadorVida = bonificadorVida;
+    }
+    public void setBonificadorFuerza(int bonificadorFuerza) {
+        this.bonificadorFuerza = bonificadorFuerza;
+    }
+
 }
