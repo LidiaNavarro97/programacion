@@ -16,6 +16,7 @@ public class ConexionDB {
         Connection conexion = null;
         try {
             // Cargo el driver por si acaso
+            //forName es un metodo que busca una clase por su nombre de texto y la carga en la memoria
             Class.forName("org.postgresql.Driver");
             // Intento conectar
             conexion = DriverManager.getConnection(URL, USER, PASS);
