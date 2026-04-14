@@ -44,7 +44,7 @@ public class Personaje {
     public int getIdClase() {
         return idClase;
     }
-        public int getIdCiudadActual() {
+    public int getIdCiudadActual() {
         return idCiudadActual;
     }
 

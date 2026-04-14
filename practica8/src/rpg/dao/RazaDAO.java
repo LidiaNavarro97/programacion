@@ -1,7 +1,7 @@
 package rpg.dao;
 
 import rpg.model.Raza;
-import java.sql.*; // Importo todo el sql para no liarme
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
