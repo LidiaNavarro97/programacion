@@ -65,8 +65,7 @@ public class PersonajeDAO {
         }
     }
 
-    // --- MÉTODOS AUXILIARES (Para que lo anterior funcione) ---
-
+    // MÉTODOS AUXILIARES
     // Este busca a Dani para que sepamos su nivel y oro actual
     public Personaje buscarDaniPorNombre(String nombre) {
         String sql = "SELECT * FROM Personajes WHERE nombre = '" + nombre + "'";
@@ -85,7 +84,7 @@ public class PersonajeDAO {
         return null;
     }
 
-    // Este consulta la tabla Ciudades para ver el nivel_minimo_acceso
+    // consulto la tabla Ciudades para ver el nivel minimo
     private int obtenerNivelMinimoCiudad(int idCiudad) {
         String sql = "SELECT nivel_minimo_acceso FROM Ciudades WHERE id = " + idCiudad;
         Connection con = ConexionDB.obtenerConexion();
@@ -96,6 +95,6 @@ public class PersonajeDAO {
                 return rs.getInt("nivel_minimo_acceso");
             }
         } catch (SQLException e) { e.printStackTrace(); }
-        return 0; // Si no la encuentra, devuelve 0 por defecto
+        return 0; // Si no la encuentra devuelve 0 por defecto
     }
 }
