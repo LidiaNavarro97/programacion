@@ -1,6 +1,7 @@
 package rpg.logic;
 
 import rpg.dao.*;
+import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 import rpg.utils.Log;
 import java.util.List;
@@ -11,6 +12,7 @@ public class MenuPrincipal {
     // Necesitamos los DAO para poder trabajar con la base de datos
     private PersonajeDAO personajeDAO = new PersonajeDAO();
     private RazaDAO razaDAO = new RazaDAO();
+    private CiudadDAO ciudadDAO = new CiudadDAO();
     private Scanner sc = new Scanner(System.in);
 
     // Un metodo para mostrar el menu
@@ -33,7 +35,7 @@ public class MenuPrincipal {
                     menuCrearPersonaje();
                     break;
                 case 2:
-                    System.out.println("Aqui llamare al metodo cuando lo tenga hecho y sepa, claro");
+                    menuViajar();
                     break;
                 case 3:
                     System.out.println("Aqui llamare al metodo cuando lo tenga hecho y sepa, claro");
@@ -73,4 +75,43 @@ public class MenuPrincipal {
 
         System.out.println("¡Personaje creado y registrado en el log!");
     }
+
+    private void menuViajar() {
+
+        System.out.print("Pon tu ID de personaje: ");
+        int idPerso = sc.nextInt();
+
+        System.out.print("¿A qué ciudad quieres ir? (Pon el ID de la ciudad): ");
+        int idCiu = sc.nextInt();
+
+        // la información de la base de datos para comparar, con los metodos que he hecho en las clases DAO
+        Personaje p = personajeDAO.obtenerPorId(idPerso);
+        Ciudad destino = ciudadDAO.obtenerPorId(idCiu);
+
+        // Comprobar el nivel y viajar
+        try {
+            // Miramos si el nivel del personaje es menor que el que pide la ciudad
+            if (p.getNivel() < destino.getNivelMinimoAcceso()) {
+
+                // Si tiene poco nivel lanzo el error y se para aqui
+                throw new NivelInsuficienteException("No puedes pasar porque necesitas nivel " + destino.getNivelMinimoAcceso());
+
+            } else {
+                // Si el nivel es igual o mayor, entonces si puede viajar
+                personajeDAO.viajar(idPerso, idCiu);
+
+                System.out.println("Viaje con éxito. Ahora estás en " + destino.getNombre());
+
+                // Guardamos el mensaje en el log
+                Log.guardarLog(p.getNombre() + " viajó a " + destino.getNombre());
+            }
+
+        } catch (NivelInsuficienteException e) {
+            System.out.println("ERROR: " + e.getMessage());
+
+            Log.guardarLog("Fallo al viajar: " + e.getMessage());
+        }
+    }
+
+
 }
