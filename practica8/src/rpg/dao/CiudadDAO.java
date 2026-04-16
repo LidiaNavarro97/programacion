@@ -36,4 +36,37 @@ public class CiudadDAO {
         }
         return lista; // Devuelvo la lista llena al programa principal
     }
+
+    // para buscar una ciudad por su id
+    // y para saber que nivel minimo de acceso pide esa ciudad
+
+    public Ciudad obtenerPorId(int idBusqueda) {
+
+        String sql = "SELECT * " +
+                "FROM Ciudades " +
+                "WHERE id = ?";
+
+        try (Connection connection = ConexionDB.obtenerConexion();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idBusqueda);
+
+            ResultSet resulset = ps.executeQuery();
+
+            if (resulset.next()) {
+                // Creamos y devolvemos el objeto Ciudad con los datos de la tabla
+                return new Ciudad(
+                        resulset.getInt("id"),
+                        resulset.getString("nombre"),
+                        resulset.getInt("nivel_minimo_acceso")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar la ciudad en la base de datos.");
+            e.printStackTrace();
+        }
+
+        // Si no encuentra la ciudad, devuelve null (nada)
+        return null;
+    }
 }

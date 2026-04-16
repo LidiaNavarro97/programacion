@@ -50,4 +50,32 @@ public class PersonajeDAO {
             e.printStackTrace();
         }
     }
+
+    // hago este metodo para saber qué nivel tiene el personaje antes de viajar
+    public Personaje obtenerPorId(int idBusqueda) {
+        String sql = "SELECT * " +
+                "FROM Personajes" +
+                "WHERE id = ?";
+
+        try (Connection connection = ConexionDB.obtenerConexion();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idBusqueda); // aqui ponemos el id
+            ResultSet resulset = ps.executeQuery();
+
+            if (resulset.next()) {
+                // Si la base de datos encuentra al personaje, creamos el objeto con sus datos
+                return new Personaje(
+                        resulset.getInt("id"),
+                        resulset.getString("nombre"),
+                        resulset.getInt("nivel"),
+                        resulset.getInt("oro")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar el personaje por ID en la base de datos.");
+            e.printStackTrace();
+        }
+        return null; // sino lo encuentra pues lo devuelve vacio
+    }
 }
