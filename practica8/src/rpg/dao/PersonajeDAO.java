@@ -1,100 +1,53 @@
 package rpg.dao;
 
 import rpg.model.Personaje;
-import rpg.exception.NivelInsuficienteException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PersonajeDAO {
 
-    // Creo el personaje
-    public void crearPersonajeDani() {
-
+    // para meter un personaje nuevo en la base de datos
+    public void insertar(String nombre, int idRaza, int idClase) {
+        // Uso "?" para que Java se encargue de poner los valores de forma segura (me lo ha dicho la IA)
+        // Le pongo nivel 1, 100 de oro y 100 de vida como dice la practica
         String sql = "INSERT INTO Personajes (nombre, nivel, oro, vida_actual, id_raza, id_clase, id_ciudad_actual) " +
-                "VALUES ('Dani', 1, 100, 100, 1, 1, 1)";
+                "VALUES (?, 1, 100, 100, ?, ?, 1)";
 
-        Connection con = ConexionDB.obtenerConexion();
-        try {
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(sql);
-            System.out.println("He guardado a Dani en la BBDD.");
+        try (Connection connection = ConexionDB.obtenerConexion();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            // los "?" los tengo que sustituir por las variables que recibo en el metodo
+            ps.setString(1, nombre); // el nombre
+            ps.setInt(2, idRaza);    // id de la raza
+            ps.setInt(3, idClase);   // id de la clase
+
+            // ExecuteUpdate se usa para INSERT, UPDATE y DELETE, para cambiar cosas de la tabla
+            ps.executeUpdate();
+            System.out.println("Personaje " + nombre + " guardado correctamente.");
+
         } catch (SQLException e) {
-            System.out.println("Error: Dani ya existe o la BBDD ha fallado.");
-        } finally {
-            ConexionDB.cerrarConexion(con);
+            System.out.println("Error al crear el personaje en la base de datos. ");
+            e.printStackTrace();
         }
     }
 
-    // Viajar de ciudad
+    // Para actualizar la ciudad donde esta el personaje
+    public void viajar(int idPersonaje, int idCiudadDestino) {
 
-    public void viajar(int idCiudadDestino) throws NivelInsuficienteException {
-        // Primero necesito sacar a Dani de la BBDD para saber su nivel actual
-        Personaje dani = buscarDaniPorNombre("Dani");
-
-        // Necesito saber que nivel pide la ciudad
-        int nivelMinimoCiudad = obtenerNivelMinimoCiudad(idCiudadDestino);
-
-        // Siguiendo la regla miro si dani tiene nivel suficiente
-        if (dani.getNivel() < nivelMinimoCiudad) {
-            // Si no tiene nivel, lanzo la excepción y el metodo se para aquí
-            throw new NivelInsuficienteException("Dani no puede entrar: Es nivel " +
-                    dani.getNivel() + " y piden nivel " + nivelMinimoCiudad);
-        }
-
-        // Si el nivel es correcto hago el UPDATE
+        // Hacemos un UPDATE filtrando por el id del personaje
         String sql = "UPDATE Personajes " +
-                "SET id_ciudad_actual = ? " +
-                "WHERE nombre = 'Dani'";
-        // Llamamos a la clase de conexión para poder entrar a la BBDD.
-        Connection con = ConexionDB.obtenerConexion();
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            // En la primera interrogación (1), pon el valor de la variable idCiudadDestino".
-            ps.setInt(1, idCiudadDestino);
+                        "SET id_ciudad_actual = ? " +
+                        "WHERE id = ?";
+
+        try (Connection connection = ConexionDB.obtenerConexion();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idCiudadDestino); // Nuevo destino
+            ps.setInt(2, idPersonaje);     // A quien muevo
             ps.executeUpdate();
 
-            // Si no hay errores:
-            System.out.println("Dani ha viajado con éxito a la ciudad " + idCiudadDestino);
-
-            //Si sale mal, capturo el fallo
         } catch (SQLException e) {
-            System.out.println("Error al actualizar la ciudad en la BBDD.");
-        } finally {
-            ConexionDB.cerrarConexion(con);
+            System.out.println("No se pudo cambiar al personaje de ciudad. ");
+            e.printStackTrace();
         }
-    }
-
-    // MÉTODOS AUXILIARES
-    // Este busca a Dani para que sepamos su nivel y oro actual
-    public Personaje buscarDaniPorNombre(String nombre) {
-        String sql = "SELECT * FROM Personajes WHERE nombre = '" + nombre + "'";
-        Connection con = ConexionDB.obtenerConexion();
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                return new Personaje(
-                        rs.getInt("id"), rs.getString("nombre"), rs.getInt("nivel"),
-                        rs.getInt("oro"), rs.getInt("vida_actual"), rs.getInt("id_raza"),
-                        rs.getInt("id_clase"), rs.getInt("id_ciudad_actual")
-                );
-            }
-        } catch (SQLException e) { e.printStackTrace(); }
-        return null;
-    }
-
-    // consulto la tabla Ciudades para ver el nivel minimo
-    private int obtenerNivelMinimoCiudad(int idCiudad) {
-        String sql = "SELECT nivel_minimo_acceso FROM Ciudades WHERE id = " + idCiudad;
-        Connection con = ConexionDB.obtenerConexion();
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                return rs.getInt("nivel_minimo_acceso");
-            }
-        } catch (SQLException e) { e.printStackTrace(); }
-        return 0; // Si no la encuentra devuelve 0 por defecto
     }
 }
