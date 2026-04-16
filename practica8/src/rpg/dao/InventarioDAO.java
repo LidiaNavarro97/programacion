@@ -4,22 +4,26 @@ import java.sql.*;
 
 public class InventarioDAO {
 
-    // para añadir un item a Dani
-    public void añadirItemADani(int idItem) {
+    // Para registrar que un personaje ha comprado un item
 
-        // Buscamos el ID de Dani, el 1 porque es el primero que he creado
-        String sql = "INSERT INTO Inventarios (id_personaje, id_item, cantidad) VALUES (1, ?, 1)";
-        Connection con = ConexionDB.obtenerConexion();
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idItem);
+    public void agregarItem(int idPersonaje, int idItem) {
+
+        // La tabla Inventarios es una relacion N a M entre personajes e items
+        String sql = "INSERT INTO Inventarios (id_personaje, id_item, cantidad) VALUES (?, ?, 1)";
+
+        try (Connection connection = ConexionDB.obtenerConexion();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            //para rellenar los huecos de los "?"
+            ps.setInt(1, idPersonaje);
+            ps.setInt(2, idItem);
+
+            //uso esto porque estoy cambiando la base de datos
             ps.executeUpdate();
-            System.out.println("Item añadido al inventario de Dani.");
+
         } catch (SQLException e) {
-            System.out.println("Error al guardar en el inventario.");
-        } finally {
-            ConexionDB.cerrarConexion(con);
+            System.out.println("Error: No se pudo añadir el item al inventario. ");
+            e.printStackTrace(); //esto dice la linea exacta donde ha fallado
         }
     }
-
 }
