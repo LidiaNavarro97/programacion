@@ -12,28 +12,11 @@ public class ConexionDB {
     private static final String PASS = "xrpg_password";
 
     // Metodo para abrir la conexion
-    public static Connection obtenerConexion() {
-        Connection conexion = null;
-        try {
-            // Cargo el driver por si acaso
-            //forName es un metodo que busca una clase por su nombre de texto y la carga en la memoria
-            Class.forName("org.postgresql.Driver");
-            // Intento conectar
-            conexion = DriverManager.getConnection(URL, USER, PASS);
-        } catch (Exception e) {
-            System.out.println("Ojo, error al conectar: " + e.getMessage());
-        }
-        return conexion;
+    public static Connection obtenerConexion() throws SQLException {
+
+        //devuelve la conexion usando el DriverManager
+        return DriverManager.getConnection(URL,USER,PASS);
     }
 
-    // Metodo para cerrar la conexion y no dejarla abierta
-    public static void cerrarConexion(Connection conexion) {
-        try {
-            if (conexion != null) {
-                conexion.close();
-            }
-        } catch (SQLException e) {
-            System.out.println("No se pudo cerrar: " + e.getMessage());
-        }
-    }
+
 }
