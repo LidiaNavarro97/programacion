@@ -6,47 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RazaDAO {
-    private List<Raza> razas;
 
-    public RazaDAO(){
-        this.razas = new ArrayList<>();
-    }
-
-    public List<Raza> cargarRazas(){
-        // Limpio la lista por si acaso se llama dos veces al metodo
-        razas.clear();
-
+    // para rellenar el menu cuando el usuario tiene que elegir raza
+    public List<Raza> obtenerTodasRazas() {
+        List<Raza> lista = new ArrayList<>();
         String sql = "SELECT * FROM Razas";
 
-        // Uso la conexion de mi clase auxiliar
-        Connection con = ConexionDB.obtenerConexion();
+        try (Connection connection = ConexionDB.obtenerConexion();
+             Statement statement = connection.createStatement();
+             ResultSet resultset = statement.executeQuery(sql)) {
 
-        if (con != null) {
-            try {
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery(sql);
+            // Voy fila por fila sacando la informacion
+            while (resultset.next()) {
 
-                while (rs.next()) {
-                    // OJO: Los nombres de las columnas deben ser igual que en el init.sql
-                    // En tu SQL pusiste "bonificador_vida", no "bonificadorVida"
-                    Raza r = new Raza(
-                            rs.getInt("id"),
-                            rs.getString("nombre"),
-                            rs.getInt("bonificador_vida"),
-                            rs.getInt("bonificador_fuerza")
-                    );
-                    razas.add(r);
-                }
-
-                // Cierro
-                rs.close();
-                stmt.close();
-                ConexionDB.cerrarConexion(con);
-
-            } catch (SQLException e) {
-                System.out.println("Error al leer las razas: " + e.getMessage());
+                // Uso el constructor la clase Raza
+                Raza r = new Raza(
+                        resultset.getInt("id"),
+                        resultset.getString("nombre"),
+                        resultset.getInt("bonificador_vida"),
+                        resultset.getInt("bonificador_fuerza")
+                );
+                lista.add(r); //la añado a la lista
             }
+        } catch (SQLException e) {
+            System.out.println("Error al leer la tabla de Razas");
+            e.printStackTrace();
         }
-        return razas;
+        return lista; //devuelvp la lista rellena
     }
 }
