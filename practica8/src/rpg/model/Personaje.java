@@ -11,7 +11,7 @@ public class Personaje {
     private int idCiudadActual;
 
     // Constructor
-    public Personaje(int id, String nombre, int nivel, int oro, int vidaActual, int idRaza, int idClase, int idCiudadActual) {
+    public Personaje(int id, String nombre, int nivel, int oro) {
         this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
