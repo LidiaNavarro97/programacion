@@ -1,6 +1,3 @@
-
-import rpg.logic.MenuPrincipal;
-
 public class Main {
     public static void main(String[] args) {
 
