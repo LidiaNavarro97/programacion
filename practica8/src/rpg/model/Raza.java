@@ -1,6 +1,6 @@
 package rpg.model;
 
-public class Raza {
+public class  Raza {
 
     private int id;
     private String nombre;

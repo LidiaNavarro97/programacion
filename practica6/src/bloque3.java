@@ -213,27 +213,13 @@ public class bloque3 {
 
         System.out.println("\nEJERCICIO 15:");
 
-        // Creamos la casa de subastas
-        casaSubastas casa = new casaSubastas();
+        HashMap<String, PriorityQueue<Double>> pujas = new HashMap<>();
 
-        // Creamos jugadores
-        casa.agregarJugador("Merlin", 500);
-        casa.agregarJugador("Lancelot", 300);
-        casa.agregarJugador("Josemi", 1000);
 
-        // Creamos item
-        casa.agregarItem("Excalibur");
 
-        // Creamos pujas
-        casa.agregarPuja("Excalibur", new puja("Merlin", 600));
-        casa.agregarPuja("Excalibur", new puja("Lancelot", 250));
-        casa.agregarPuja("Excalibur", new puja("Josemi", 800));
 
-        // Procesamos la venta
-        casa.procesarVenta("Excalibur");
 
-        // Mostramos los saldos finales
-        casa.mostrarSaldos();
+
     }
     // MÉTODOS
 

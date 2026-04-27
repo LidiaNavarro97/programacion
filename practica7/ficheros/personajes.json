@@ -1,0 +1,14 @@
+[
+  {
+    "nombre": "Aragon",
+    "raza": "Humano",
+    "nivel": 20,
+    "equipoIds": ["E01"]
+  },
+  {
+    "nombre": "Josemi",
+    "raza": "Enano",
+    "nivel": 30,
+    "equipoIds": ["E02"]
+  }
+]

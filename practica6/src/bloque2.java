@@ -7,7 +7,6 @@ import java.util.Map;
 public class bloque2 {
     public static void main() {
 
-
         //EJERCICIO 7)
         // Crea un HashMap<String, ArrayList<String>>.
         // La clave es el nombre del gremio (ej: "Magos") y el valor es una lista de sus miembros.

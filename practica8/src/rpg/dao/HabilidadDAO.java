@@ -17,23 +17,3 @@ public class HabilidadDAO {
 
         try (Connection connection = ConexionDB.obtenerConexion();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-
-            // guardo el resultado en resultset
-            try (ResultSet resultset = ps.executeQuery()) {
-                while (resultset.next()) {
-                    lista.add(new Habilidad(
-                            resultset.getInt("id"),
-                            resultset.getString("nombre"),
-                            resultset.getInt("daño_base"),
-                            resultset.getInt("usos_maximos"),
-                            resultset.getInt("id_clase")
-                    ));
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Fallo al buscar habilidades por clase. ");
-            e.printStackTrace();
-        }
-        return lista;
-    }
-}

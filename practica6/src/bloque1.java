@@ -97,6 +97,7 @@ public class bloque1 {
             }
         }
 
+
         // EJERCICIO 6)
 
         // 6) En tu HashSet de villanos, verifica si "Sauron" está presente.
