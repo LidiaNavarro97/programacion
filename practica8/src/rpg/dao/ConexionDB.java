@@ -2,6 +2,7 @@ package rpg.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConexionDB {
@@ -19,4 +20,13 @@ public class ConexionDB {
     }
 
 
+    public ResultSet conectar(String query) {
+
+        //HACER
+    }
+
+    public void ejecutarUpdate(String sql) {
+
+        //HACER
+    }
 }
