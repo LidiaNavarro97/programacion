@@ -5,7 +5,14 @@ import rpg.model.Raza;
 import java.util.List;
 
 public class RazaDAO {
-    public List<Raza> cargarRazas() {
-        return null;
+
+    public RazaDAO(){}
+
+    public List<Raza> obtenerRazas(){
+
+        String sql = "SELECT * FROM Razas";
+
+        try( )
     }
+
 }
