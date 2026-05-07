@@ -1,62 +1,38 @@
 package rpg.dao;
 
-import rpg.model.Ciudad;
 import rpg.model.Clase;
-import rpg.model.Raza;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClaseDAO {
 
-    private ArrayList<Clase> clases;
-    private ConexionDB conexionDB;
-
-    public ClaseDAO(){
-        this.clases=new ArrayList<>();
-        this.conexionDB=new ConexionDB();
-        cargaClases();
-
-
+    public ClaseDAO() {
     }
 
-    public ArrayList<Clase> getClases() {
-        return clases;
-    }
+    public List<Clase> obtenerClases() {
 
-    public void setClases(ArrayList<Clase> clases) {
-        this.clases = clases;
-    }
+        List<Clase> listaClases = new ArrayList<Clase>();
+        String sql = "SELECT * FROM Clases_RPG";
 
-    public ConexionDB getConexionDB() {
-        return conexionDB;
-    }
+        try (Connection conexion = ConexionDB.getConexion();
+             Statement st = conexion.createStatement();
+             ResultSet rs = st.executeQuery(sql);) {
 
-    public void setConexionDB(ConexionDB conexionDB) {
-        this.conexionDB = conexionDB;
-    }
-
-    public void cargaClases(){
-        ResultSet resultset = conexionDB.executeQuery("SELECT * FROM clases_rpg");
-
-        try {
-            while (resultset.next()) {
-                Integer id = resultset.getInt("id");
-                String nombre = resultset.getString("nombre");
-                this.clases.add(new Clase(id, nombre));
+            while(rs.next()){
+                listaClases.add(new Clase(
+                        rs.getInt("id"),
+                        rs.getString("nombre")
+                ));
             }
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-    }
-
-    public Clase buscaClasePorId(Integer id){
-        for (Clase clase : clases){
-            if (clase.getId().equals(id)){
-                return clase;
-            }
-        }
-        return null;
+        return listaClases;
     }
 }
