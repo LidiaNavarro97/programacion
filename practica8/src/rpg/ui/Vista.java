@@ -1,5 +1,8 @@
 package rpg.ui;
 
+import rpg.model.Raza;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Vista {
@@ -37,6 +40,23 @@ public class Vista {
         System.out.println("Escribe el nombre de tu personaje: ");
         sc.nextLine();
         return sc.nextLine();
+    }
+
+    public int mostrarRazas(ArrayList<Raza> listaRazas){ //dentro ponemos lo que requiere el metodo desde fuera
+        System.out.println("Lista de razas: ");
+        
+        for (int i=0 ; i < listaRazas.size(); i++){ // recorremos la lista de Razas
+          System.out.println((i+1)+ " - " + listaRazas.get(i).getNombre());
+          // la posicion +1 para que empiece con orden logico
+          // mostramos el nombre de la raza
+            
+        }
+        while(!sc.hasNextInt()){
+            System.out.println("Introduzca un valor correcto: ");
+            sc.next();
+        }
+
+        return sc.nextInt() -1;
     }
 
 }
