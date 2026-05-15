@@ -1,14 +1,21 @@
 package rpg.logic;
 
+import rpg.dao.RazaDAO;
+import rpg.model.Raza;
 import rpg.ui.Vista;
+
+import java.util.ArrayList;
 
 
 public class GestionMundo {
 
     private Vista vista;
+    private RazaDAO razaDAO;
+
 
     public GestionMundo() {
         this.vista = new Vista();
+        this.razaDAO = new RazaDAO();
         iniciar();
     }
 
@@ -43,7 +50,16 @@ public class GestionMundo {
 
     public void crearPersonaje(){
         this.vista.mostrarMensaje("Crea tu personaje -> ");
-        this.vista.pedirNombre();
+        String nombre = this.vista.pedirNombre();
+        ArrayList<Raza> listaRazas = this.razaDAO.obtenerRazas();
+        int idRaza = this.vista.mostrarRazas(listaRazas);
+
+        while(idRaza < 0 || idRaza > listaRazas.size()){
+            this.vista.mostrarMensaje("Introduce una raza correcta. ");
+            idRaza = this.vista.mostrarRazas(listaRazas);
+        }
+
+
 
     }
 
