@@ -49,7 +49,8 @@ public class GestionMundo {
     }
 
     public void crearPersonaje(){
-        this.vista.mostrarMensaje("Crea tu personaje -> ");
+        this.vista.mostrarMensaje("CREA TU PERSONAJE -> ");
+
         String nombre = this.vista.pedirNombre(); //guardamos el nombre que el cliente mete en esa variable
         ArrayList<Raza> listaRazas = this.razaDAO.obtenerRazas(); //guardamos la raza en una lista de razas
         int idRaza = this.vista.mostrarRazas(listaRazas); //guardamos el id que elige el cliente en idRaza

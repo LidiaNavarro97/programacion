@@ -14,7 +14,7 @@ public class RazaDAO {
     public RazaDAO() {
     }
 
-    public ArrayList<Raza> obtenerRazas1() {
+    public ArrayList<Raza> obtenerRazas() {
 
         ArrayList<Raza> listaRazas = new ArrayList<>();
         String sql = "SELECT * FROM Razas";
@@ -40,15 +40,6 @@ public class RazaDAO {
         return listaRazas;
     }
 
-    public ArrayList<Raza> obtenerRazas() {
 
-        ArrayList<Raza> listaRazas = new ArrayList<>();
-
-        listaRazas.add(new Raza(0,"Humano", 10, 5));
-        listaRazas.add(new Raza(1,"Orco", 25, 10));
-        listaRazas.add(new Raza(2,"Elfo", -5, 2));
-        listaRazas.add(new Raza(3,"Enano", 20, 8));
-        return listaRazas;
-    }
 
 }
