@@ -13,7 +13,7 @@ public class Vista {
         sc = new Scanner(System.in);
     }
 
-    public void mostrarMensaje(String mensaje){
+    public void mostrarMensaje(String mensaje){ //metodo al q llamaremos siempre para imprimir un mensaje
         System.out.println(mensaje);
     }
 
@@ -56,7 +56,7 @@ public class Vista {
             sc.next();
         }
 
-        return sc.nextInt() -1;
+        return sc.nextInt() -1; //el -1 es para que muestre nuestro orden logico
     }
 
 }
