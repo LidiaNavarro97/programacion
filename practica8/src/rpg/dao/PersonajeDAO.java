@@ -11,7 +11,7 @@ public class PersonajeDAO {
 
     public void insertPersonaje(String nombre, int idRaza, int idClase, int idCiudadActual) {
 
-        String sql = "INSERT INTO Personajes (nombre, nivel, oro, vida_actual, id_raza, id_clase, id_ciudad_actual) VALUES ?, 1, 100, 100, ?, ?, ?";
+        String sql = "INSERT INTO Personajes (nombre, nivel, oro, vida_actual, id_raza, id_clase, id_ciudad_actual) VALUES (?, 1, 100, 100, ?, ?, ?)";
 
         try (Connection conexion = ConexionDB.getConexion();
              PreparedStatement ps = conexion.prepareStatement(sql)) {

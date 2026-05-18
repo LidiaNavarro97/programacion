@@ -2,21 +2,18 @@ package rpg.dao;
 
 import rpg.model.Clase;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class ClaseDAO {
 
     public ClaseDAO() {
     }
 
-    public List<Clase> obtenerClases() {
+    public ArrayList<Clase> obtenerClases() {
 
-        List<Clase> listaClases = new ArrayList<Clase>();
+        ArrayList<Clase> listaClases = new ArrayList<>();
         String sql = "SELECT * FROM Clases_RPG";
 
         try (Connection conexion = ConexionDB.getConexion();

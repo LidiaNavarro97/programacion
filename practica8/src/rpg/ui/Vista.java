@@ -1,8 +1,10 @@
 package rpg.ui;
 
+import rpg.model.Clase;
 import rpg.model.Raza;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Vista {
@@ -43,7 +45,7 @@ public class Vista {
     }
 
     public int mostrarRazas(ArrayList<Raza> listaRazas){ //dentro ponemos lo que requiere el metodo desde fuera
-        System.out.println("Lista de razas: ");
+        System.out.println("Elige una raza: ");
         
         for (int i=0 ; i < listaRazas.size(); i++){ // recorremos la lista de Razas
           System.out.println((i+1)+ " - " + listaRazas.get(i).getNombre());
@@ -56,7 +58,26 @@ public class Vista {
             sc.next();
         }
 
-        return sc.nextInt() -1; //el -1 es para que muestre nuestro orden logico
+        return sc.nextInt() -1;
+        // el -1 hace que se le reste 1, es decir si elige el cliente el 1 (humano),
+        // seria nuestra posicion 0 en Java
+        // sino se hiciera eso se elegiria realmente la posicion dos que seria Orco
+    }
+
+    // Lo hago en clase, preguntar a Manu
+    public int mostrarClases(ArrayList<Clase> listaClases){
+        System.out.println("Elige una clase: ");
+
+        for (int i=0; i < listaClases.size() ; i++) { // recorremos la lista de razas
+            System.out.println((i+1) + " - " + listaClases.get(i).getNombre());
+
+        }
+        while(!sc.hasNextInt()){
+            System.out.println("Introduzca un valor correcto: ");
+            sc.next();
+        }
+
+        return sc.nextInt() -1;
     }
 
 }
