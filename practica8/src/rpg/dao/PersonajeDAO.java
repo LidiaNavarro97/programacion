@@ -17,9 +17,9 @@ public class PersonajeDAO {
              PreparedStatement ps = conexion.prepareStatement(sql)) {
 
             ps.setString(1, nombre);
-            ps.setInt(2,idRaza);
-            ps.setInt(3,idClase);
-            ps.setInt(4,idCiudadActual);
+            ps.setInt(2, idRaza);
+            ps.setInt(3, idClase);
+            ps.setInt(4, idCiudadActual);
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -27,4 +27,19 @@ public class PersonajeDAO {
         }
     }
 
+    public void updateCiudad(int idCiudad) {
+
+        String sql = "UPDATE Personajes SET id_ciudad_actual = " + idCiudad + "FROM Ciudades WHERE " + idCiudad + " = Ciudades.id " +
+                "AND Personajes.nivel >= Ciudades.nivel_minimo_acceso ";
+
+        try (Connection conexion = ConexionDB.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
