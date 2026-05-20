@@ -1,13 +1,17 @@
 package rpg.logic;
 
+import rpg.dao.CiudadDAO;
 import rpg.dao.ClaseDAO;
 import rpg.dao.PersonajeDAO;
 import rpg.dao.RazaDAO;
 import rpg.exception.NivelInsuficienteException;
+import rpg.model.Ciudad;
 import rpg.model.Clase;
+import rpg.model.Personaje;
 import rpg.model.Raza;
 import rpg.ui.Vista;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -17,6 +21,7 @@ public class GestionMundo {
     private RazaDAO razaDAO;
     private ClaseDAO claseDAO;
     private PersonajeDAO personajeDAO;
+    private CiudadDAO ciudadDAO;
 
 
     public GestionMundo() {
@@ -24,6 +29,7 @@ public class GestionMundo {
         this.razaDAO = new RazaDAO();
         this.claseDAO = new ClaseDAO();
         this.personajeDAO = new PersonajeDAO();
+        this.ciudadDAO = new CiudadDAO();
         iniciar(); //Preguntar
     }
 
@@ -111,12 +117,32 @@ public class GestionMundo {
 
     }
 
-    //PREGUNTAR A MANU
     public void viajarCiudad() {
         this.vista.mostrarMensaje("VIAJAR DE CIUDAD -> ");
 
-        int idPersonaje = this.vista.pedirIdPersonaje();
-        int idCiudad = this.vista.pedirIdCiudad();
+        ArrayList<Personaje> listaPersonajes = this.personajeDAO.obtenerPersonaje();
+
+        int idPersonaje = this.vista.mostrarPersonajes(listaPersonajes);
+
+        while(idPersonaje < 0 || idPersonaje > listaPersonajes.size()){
+
+            this.vista.mostrarMensaje("Personaje incorrecto. Vuelve a introducirlo: ");
+
+            idPersonaje = this.vista.mostrarPersonajes(listaPersonajes);
+        }
+
+
+        ArrayList<Ciudad> listaCiudades = this.ciudadDAO.obtenerCiudades();
+
+        int idCiudad = this.vista.mostrarCiudades(listaCiudades);
+
+        while(idCiudad < 0 || idCiudad > listaCiudades.size()){
+
+            this.vista.mostrarMensaje("Ciudad incorrecta. Vuelve a introducirla: ");
+
+            idCiudad = this.vista.mostrarCiudades(listaCiudades);
+        }
+
 
         try {
             this.personajeDAO.updateCiudad(idPersonaje, idCiudad);

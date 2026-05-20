@@ -1,10 +1,10 @@
 package rpg.dao;
 
 import rpg.exception.NivelInsuficienteException;
+import rpg.model.Personaje;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class PersonajeDAO {
 
@@ -29,22 +29,21 @@ public class PersonajeDAO {
         }
     }
 
-    //PREGUNTAR MANU
-    public void updateCiudad(int idPersonaje, int idCiudad) throws NivelInsuficienteException{
+    public void updateCiudad(int idPersonaje, int idCiudad) throws NivelInsuficienteException {
 
         String sql = "UPDATE Personajes " +
                 "SET id_ciudad_actual = ? " +
-                "FROM Ciudades " +
-                "WHERE Ciudades.id = ? " +
-                "AND Personajes.id = ? " +
-                "AND Personajes.nivel >= Ciudades.nivel_minimo_acceso";
+                "WHERE Personajes.id = ? " +
+                "AND Personaje.nivel >= (SELECT nivel_minimo_acceso" +
+                "FROM Ciudades" +
+                "WHERE id = ?)";
 
         try (Connection conexion = ConexionDB.getConexion();
              PreparedStatement ps = conexion.prepareStatement(sql)) {
 
             ps.setInt(1, idCiudad);
-            ps.setInt(2, idCiudad);
-            ps.setInt(3, idPersonaje);
+            ps.setInt(2, idPersonaje);
+            ps.setInt(3, idCiudad);
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -54,8 +53,37 @@ public class PersonajeDAO {
 
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new NivelInsuficienteException("Error");
         }
 
+    }
+
+    public ArrayList<Personaje> obtenerPersonaje() {
+
+        String sql = " SELECT * FROM Personajes";
+
+        ArrayList<Personaje> listaPersonajes = new ArrayList<>();
+
+        try (Connection conexion = ConexionDB.getConexion();
+             Statement st = conexion.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                listaPersonajes.add(new Personaje(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getInt("nivel"),
+                        rs.getInt("oro"),
+                        rs.getInt("vida_actual"),
+                        rs.getInt("id_raza"),
+                        rs.getInt("id_clase"),
+                        rs.getInt("id_ciudad_actual")
+                ));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaPersonajes;
     }
 }
