@@ -3,6 +3,7 @@ package rpg.logic;
 import rpg.dao.ClaseDAO;
 import rpg.dao.PersonajeDAO;
 import rpg.dao.RazaDAO;
+import rpg.exception.NivelInsuficienteException;
 import rpg.model.Clase;
 import rpg.model.Raza;
 import rpg.ui.Vista;
@@ -47,7 +48,7 @@ public class GestionMundo {
                     crearPersonaje();
                     break;
                 case 2:
-                    System.out.println("Viajar de ciudad.");
+                    viajarCiudad();
                     break;
                 case 3:
                     System.out.println("Comprar Items.");
@@ -108,6 +109,21 @@ public class GestionMundo {
         this.vista.mostrarMensaje("Personaje creado con éxito. ");
 
 
+    }
+
+    //PREGUNTAR A MANU
+    public void viajarCiudad() {
+        this.vista.mostrarMensaje("VIAJAR DE CIUDAD -> ");
+
+        int idPersonaje = this.vista.pedirIdPersonaje();
+        int idCiudad = this.vista.pedirIdCiudad();
+
+        try {
+            this.personajeDAO.updateCiudad(idPersonaje, idCiudad);
+            this.vista.mostrarMensaje("Viaje realizado con éxito.");
+        } catch (NivelInsuficienteException e) {
+            this.vista.mostrarMensaje("Error: " + e.getMessage());
+        }
     }
 
 

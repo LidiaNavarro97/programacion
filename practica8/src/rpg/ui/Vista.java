@@ -64,7 +64,6 @@ public class Vista {
         // sino se hiciera eso se elegiria realmente la posicion dos que seria Orco
     }
 
-    // Lo hago en clase, preguntar a Manu
     public int mostrarClases(ArrayList<Clase> listaClases){
         System.out.println("Elige una clase: ");
 
@@ -78,6 +77,25 @@ public class Vista {
         }
 
         return sc.nextInt() -1;
+    }
+
+    //PREGUNTAR A MANU
+    public int pedirIdPersonaje() {
+        System.out.println("Introduce el id del personaje: ");
+        while (!sc.hasNextInt()) {
+            System.out.println("Introduce un valor correcto: ");
+            sc.next();
+        }
+        return sc.nextInt();
+    }
+
+    public int pedirIdCiudad() {
+        System.out.println("Introduce el id de la ciudad destino: ");
+        while (!sc.hasNextInt()) {
+            System.out.println("Introduce un valor correcto: ");
+            sc.next();
+        }
+        return sc.nextInt();
     }
 
 }
