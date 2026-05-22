@@ -53,7 +53,7 @@ public class PersonajeDAO {
 
 
         } catch (SQLException e) {
-            throw new NivelInsuficienteException("Error");
+            throw new NivelInsuficienteException("Nivel insuficiente. ");
         }
 
     }

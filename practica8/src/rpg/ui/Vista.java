@@ -1,10 +1,9 @@
 package rpg.ui;
 
-import rpg.model.Ciudad;
-import rpg.model.Clase;
-import rpg.model.Personaje;
-import rpg.model.Raza;
+import rpg.exception.FondosInsuficientesException;
+import rpg.model.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
@@ -111,6 +110,23 @@ public class Vista {
             sc.next();
         }
         return sc.nextInt();
+    }
+
+    public int mostrarItems(ArrayList<Item> listaItems) throws FondosInsuficientesException {
+
+        System.out.println("Elige un Item: ");
+
+        for (int i = 0; i < listaItems.size(); i++) {
+            System.out.println((i + 1) + "- " + listaItems.get(i).getNombre());
+
+        }
+
+        while (!sc.hasNextInt()) {
+            System.out.println("Introduce un valor correcto: ");
+            sc.next();
+        }
+        return sc.nextInt();
+
     }
 
 }

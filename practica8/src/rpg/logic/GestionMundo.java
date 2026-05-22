@@ -1,14 +1,9 @@
 package rpg.logic;
 
-import rpg.dao.CiudadDAO;
-import rpg.dao.ClaseDAO;
-import rpg.dao.PersonajeDAO;
-import rpg.dao.RazaDAO;
+import rpg.dao.*;
+import rpg.exception.FondosInsuficientesException;
 import rpg.exception.NivelInsuficienteException;
-import rpg.model.Ciudad;
-import rpg.model.Clase;
-import rpg.model.Personaje;
-import rpg.model.Raza;
+import rpg.model.*;
 import rpg.ui.Vista;
 
 import java.lang.reflect.Array;
@@ -22,6 +17,7 @@ public class GestionMundo {
     private ClaseDAO claseDAO;
     private PersonajeDAO personajeDAO;
     private CiudadDAO ciudadDAO;
+    private ItemDAO itemDAO;
 
 
     public GestionMundo() {
@@ -30,6 +26,8 @@ public class GestionMundo {
         this.claseDAO = new ClaseDAO();
         this.personajeDAO = new PersonajeDAO();
         this.ciudadDAO = new CiudadDAO();
+        this.itemDAO = new ItemDAO();
+
         iniciar(); //Preguntar
     }
 
@@ -57,7 +55,7 @@ public class GestionMundo {
                     viajarCiudad();
                     break;
                 case 3:
-                    System.out.println("Comprar Items.");
+                    comprarItems();
                     break;
                 case 4:
                     System.out.println("Cobro de impuestos.");
@@ -117,8 +115,10 @@ public class GestionMundo {
 
     }
 
-    public void viajarCiudad() {
+    public void viajarCiudad(){
+
         this.vista.mostrarMensaje("VIAJAR DE CIUDAD -> ");
+
 
         ArrayList<Personaje> listaPersonajes = this.personajeDAO.obtenerPersonaje();
 
@@ -147,9 +147,24 @@ public class GestionMundo {
         try {
             this.personajeDAO.updateCiudad(idPersonaje, idCiudad);
             this.vista.mostrarMensaje("Viaje realizado con éxito.");
+
         } catch (NivelInsuficienteException e) {
             this.vista.mostrarMensaje("Error: " + e.getMessage());
         }
+    }
+
+
+    public void comprarItems(){
+
+        this.vista.mostrarMensaje("COMPRA DE ITEMS -> ");
+
+        ArrayList<Item> listaItems = this.itemDAO.obtenerItems();
+
+        int idItem = this.vista.mostrarItems(listaItems);
+
+        if( )
+
+
     }
 
 
