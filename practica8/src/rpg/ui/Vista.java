@@ -1,11 +1,8 @@
 package rpg.ui;
-
-import rpg.exception.FondosInsuficientesException;
 import rpg.model.*;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Vista {
@@ -85,7 +82,7 @@ public class Vista {
         System.out.println("Introduce el id del personaje: ");
 
         for (int i = 0; i < listaPersonajes.size(); i++) {
-            System.out.println((i + 1) + " - " + listaPersonajes.get(i).getNombre());
+            System.out.println((i + 1) + " - " + listaPersonajes.get(i).getNombre() + " - " + listaPersonajes.get(i).getNivel());
 
         }
 
@@ -93,7 +90,7 @@ public class Vista {
             System.out.println("Introduce un valor correcto: ");
             sc.next();
         }
-        return sc.nextInt();
+        return sc.nextInt() -1;
     }
 
     public int mostrarCiudades(ArrayList<Ciudad> listaCiudades) {
@@ -101,7 +98,7 @@ public class Vista {
         System.out.println("Introduce el id de la ciudad destino: ");
 
         for (int i = 0; i < listaCiudades.size(); i++) {
-            System.out.println((i + 1) + "- " + listaCiudades.get(i).getNombre());
+            System.out.println((i + 1) + "- " + listaCiudades.get(i).getNombre() + " - " + listaCiudades.get(i).getNivelMinimoAcceso());
 
         }
 
@@ -109,10 +106,10 @@ public class Vista {
             System.out.println("Introduce un valor correcto: ");
             sc.next();
         }
-        return sc.nextInt();
+        return sc.nextInt() -1;
     }
 
-    public int mostrarItems(ArrayList<Item> listaItems) throws FondosInsuficientesException {
+    public int mostrarItems(ArrayList<Item> listaItems) {
 
         System.out.println("Elige un Item: ");
 
@@ -125,7 +122,7 @@ public class Vista {
             System.out.println("Introduce un valor correcto: ");
             sc.next();
         }
-        return sc.nextInt();
+        return sc.nextInt() -1;
 
     }
 

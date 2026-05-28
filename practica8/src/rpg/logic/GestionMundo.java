@@ -81,95 +81,104 @@ public class GestionMundo {
         String nombre = this.vista.pedirNombre(); //guardamos el nombre que el cliente mete en esa variable
 
         ArrayList<Raza> listaRazas = this.razaDAO.obtenerRazas(); //guardamos la raza en una lista de razas
-        int idRaza = this.vista.mostrarRazas(listaRazas); //guardamos el id que elige el cliente en idRaza
+        int posicionRaza = this.vista.mostrarRazas(listaRazas); //guardamos el id que elige el cliente en posicionRaza
 
         //mientras el id (nº q meta) sea menor a 0 o mayor al que haya en la lista... tiene q meter un nº valido
-        while (idRaza < 0 || idRaza > listaRazas.size()) {
+        while (posicionRaza < 0 || posicionRaza > listaRazas.size()) {
             this.vista.mostrarMensaje("Introduce una raza correcta. ");
-            idRaza = this.vista.mostrarRazas(listaRazas); // se vuelve a guardar en la variable arriba creada
+            posicionRaza = this.vista.mostrarRazas(listaRazas); // se vuelve a guardar en la variable arriba creada
         }
 
-        int idRazaBD = listaRazas.get(idRaza).getId();
+        int idRaza = listaRazas.get(posicionRaza).getId();
 
         ArrayList<Clase> listaClases = this.claseDAO.obtenerClases(); //guardamos la clase en una lista de Clases
-        int idClase = this.vista.mostrarClases(listaClases); //guardamos el id que elige el cliente en idClase
+        int posicionClase = this.vista.mostrarClases(listaClases); //guardamos el id que elige el cliente en posicionClase
 
-        while (idClase < 0 || idClase > listaClases.size()) {
+        while (posicionClase < 0 || posicionClase > listaClases.size()) {
             this.vista.mostrarMensaje("Introduce una clase correcta. ");
-            idClase = this.vista.mostrarClases(listaClases); // se vuelve a guardar en la variable arriba creada
+            posicionClase = this.vista.mostrarClases(listaClases); // se vuelve a guardar en la variable arriba creada
         }
 
-        int idClaseBD = listaClases.get(idClase).getId();
+        int idClase = listaClases.get(posicionClase).getId();
 
         //coge el objeto Raza de la lista en la posicion que elige el usuario
         // de ese objeto Raza obtiene su id real de la BD
-        // y eso lo guardo en idRazaBD y lo mismo con Clase
+        // y eso lo guardo en idRaza y lo mismo con Clase
 
 
         // llamo al metodo insertPersonaje del DAO para guardar el personaje en la BD
         // le paso los 4 datos que necesita
         // el 1 es el id de la ciudad inicial
-        this.personajeDAO.insertPersonaje(nombre, idRazaBD, idClaseBD, 1);
+        this.personajeDAO.insertPersonaje(nombre, idRaza, idClase, 1);
         this.vista.mostrarMensaje("Personaje creado con éxito. ");
 
 
     }
 
-    public void viajarCiudad(){
+    public void viajarCiudad() {
 
         this.vista.mostrarMensaje("VIAJAR DE CIUDAD -> ");
 
 
         ArrayList<Personaje> listaPersonajes = this.personajeDAO.obtenerPersonaje();
 
-        int idPersonaje = this.vista.mostrarPersonajes(listaPersonajes);
 
-        while(idPersonaje < 0 || idPersonaje > listaPersonajes.size()){
+        int posicionPersonaje = this.vista.mostrarPersonajes(listaPersonajes);
+
+        while (posicionPersonaje < 0 || posicionPersonaje > listaPersonajes.size()) {
 
             this.vista.mostrarMensaje("Personaje incorrecto. Vuelve a introducirlo: ");
 
-            idPersonaje = this.vista.mostrarPersonajes(listaPersonajes);
+            posicionPersonaje = this.vista.mostrarPersonajes(listaPersonajes);
         }
+
+        Personaje personaje = listaPersonajes.get(posicionPersonaje);
 
 
         ArrayList<Ciudad> listaCiudades = this.ciudadDAO.obtenerCiudades();
 
-        int idCiudad = this.vista.mostrarCiudades(listaCiudades);
+        int posicionCiudad = this.vista.mostrarCiudades(listaCiudades);
 
-        while(idCiudad < 0 || idCiudad > listaCiudades.size()){
+        while (posicionCiudad < 0 || posicionCiudad > listaCiudades.size()) {
 
             this.vista.mostrarMensaje("Ciudad incorrecta. Vuelve a introducirla: ");
 
-            idCiudad = this.vista.mostrarCiudades(listaCiudades);
+            posicionCiudad = this.vista.mostrarCiudades(listaCiudades);
         }
+
+        Ciudad ciudad = listaCiudades.get(posicionCiudad);
 
 
         try {
-            this.personajeDAO.updateCiudad(idPersonaje, idCiudad);
-            this.vista.mostrarMensaje("Viaje realizado con éxito.");
+            if (personaje.getNivel() >= ciudad.getNivelMinimoAcceso()) {
 
-        } catch (NivelInsuficienteException e) {
-            this.vista.mostrarMensaje("Error: " + e.getMessage());
+                this.personajeDAO.updateCiudad(personaje.getId(), ciudad.getId());
+                this.vista.mostrarMensaje("Viaje realizado con éxito.");
+
+            } else {
+
+                this.vista.mostrarMensaje("Error nivel insuficiente. ");
+
+            }
+
+            } catch(NivelInsuficienteException e){
+                this.vista.mostrarMensaje("Error: " + e.getMessage());
+            }
         }
+
+
+        public void comprarItems () {
+
+            this.vista.mostrarMensaje("COMPRA DE ITEMS -> ");
+
+            ArrayList<Item> listaItems = this.itemDAO.obtenerItems();
+
+            int posicionItem = this.vista.mostrarItems(listaItems);
+
+
+
+
+        }
+
+
     }
-
-
-    public void comprarItems(){
-
-        this.vista.mostrarMensaje("COMPRA DE ITEMS -> ");
-
-        ArrayList<Item> listaItems = this.itemDAO.obtenerItems();
-
-        int idItem = this.vista.mostrarItems(listaItems);
-
-        if( )
-
-
-    }
-
-
-
-
-
-
-}

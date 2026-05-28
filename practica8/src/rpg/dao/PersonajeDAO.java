@@ -1,6 +1,7 @@
 package rpg.dao;
 
 import rpg.exception.NivelInsuficienteException;
+import rpg.model.Item;
 import rpg.model.Personaje;
 
 import java.sql.*;
@@ -34,9 +35,9 @@ public class PersonajeDAO {
         String sql = "UPDATE Personajes " +
                 "SET id_ciudad_actual = ? " +
                 "WHERE Personajes.id = ? " +
-                "AND Personaje.nivel >= (SELECT nivel_minimo_acceso" +
-                "FROM Ciudades" +
-                "WHERE id = ?)";
+                "AND Personajes.nivel >= (SELECT nivel_minimo_acceso " +
+                "FROM Ciudades " +
+                "WHERE id = ?) ";
 
         try (Connection conexion = ConexionDB.getConexion();
              PreparedStatement ps = conexion.prepareStatement(sql)) {
@@ -46,6 +47,7 @@ public class PersonajeDAO {
             ps.setInt(3, idCiudad);
 
             int filasAfectadas = ps.executeUpdate();
+
 
             if (filasAfectadas == 0) {
                 throw new NivelInsuficienteException("Nivel insuficiente para acceder a esa ciudad.");
@@ -86,4 +88,19 @@ public class PersonajeDAO {
         }
         return listaPersonajes;
     }
+
+
+    public int updateOro(Personaje personaje, Item item) {
+
+        String sql = " UPDATE Personajes " +
+                " SET oro = ? " +
+                " WHERE id = ? " +
+                " AND oro >= (SELECT precio_oro " +
+                             "FROM Items " +
+                             "WHERE id = ? )";
+
+        return 0;
+    }
+
+
 }
