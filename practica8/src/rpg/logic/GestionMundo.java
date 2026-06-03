@@ -161,24 +161,23 @@ public class GestionMundo {
 
             }
 
-            } catch(NivelInsuficienteException e){
-                this.vista.mostrarMensaje("Error: " + e.getMessage());
-            }
+        } catch(NivelInsuficienteException e){
+            this.vista.mostrarMensaje("Error: " + e.getMessage());
         }
+    }
 
 
-        public void comprarItems () {
+    public void comprarItems () {
 
-            this.vista.mostrarMensaje("COMPRA DE ITEMS -> ");
+        this.vista.mostrarMensaje("COMPRA DE ITEMS -> ");
 
-            ArrayList<Item> listaItems = this.itemDAO.obtenerItems();
+        ArrayList<Item> listaItems = this.itemDAO.obtenerItems();
 
-            int posicionItem = this.vista.mostrarItems(listaItems);
+        int posicionItem = this.vista.mostrarItems(listaItems);
 
-
-
-
-        }
 
 
     }
+
+
+}
