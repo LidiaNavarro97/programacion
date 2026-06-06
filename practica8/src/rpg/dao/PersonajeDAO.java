@@ -1,5 +1,6 @@
 package rpg.dao;
 
+import rpg.exception.FondosInsuficientesException;
 import rpg.exception.NivelInsuficienteException;
 import rpg.model.Item;
 import rpg.model.Personaje;
@@ -60,7 +61,7 @@ public class PersonajeDAO {
 
     }
 
-    public ArrayList<Personaje> obtenerPersonaje() {
+    public ArrayList<Personaje> obtenerPersonajes() {
 
         String sql = " SELECT * FROM Personajes";
 
@@ -90,17 +91,83 @@ public class PersonajeDAO {
     }
 
 
-    public int updateOro(Personaje personaje, Item item) {
+    public int updateOro(Personaje personaje, Item item) throws FondosInsuficientesException {
+
+        int filasAfectadas = 0;
 
         String sql = " UPDATE Personajes " +
                 " SET oro = ? " +
                 " WHERE id = ? " +
                 " AND oro >= (SELECT precio_oro " +
-                             "FROM Items " +
-                             "WHERE id = ? )";
+                "FROM Items " +
+                "WHERE id = ? )";
 
-        return 0;
+        try (Connection conexion = ConexionDB.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, personaje.getOro() - item.getPrecioOro());
+            ps.setInt(2, personaje.getId());
+            ps.setInt(3, item.getId());
+
+            filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas == 0) {
+                throw new FondosInsuficientesException(" Error: Saldo insuficiente. ");
+            }
+
+        } catch (Exception e) {
+            throw new FondosInsuficientesException(" Saldo insuficiente. ");
+        }
+
+        return filasAfectadas;
+    }
+
+    // Ejercicio 3.1
+    public int updateImpuesto(Personaje personaje) {
+
+        int filasAfectadas = 0;
+
+        String sql = " UPDATE Personajes " +
+                "SET oro = ? " +
+                "WHERE id = ? ";
+
+        try (Connection conexion = ConexionDB.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, personaje.getOro() - 20);
+            ps.setInt(2, personaje.getId());
+
+            filasAfectadas = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return filasAfectadas;
+    }
+
+    // Ejercicio 3.2
+    public int updateDesterrar(Personaje personaje) {
+
+        int filasAfectadas = 0;
+
+        String sql = " UPDATE Personajes " +
+                "SET id_ciudad_actual = NULL " +
+                "WHERE id = ? ";
+
+        try (Connection conexion = ConexionDB.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, personaje.getId());
+
+            filasAfectadas = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return filasAfectadas;
     }
 
 
-}
+    }

@@ -1,5 +1,7 @@
 package rpg.model;
 
+import java.util.HashMap;
+
 public class Personaje {
     private int id;
     private String nombre;
@@ -9,6 +11,7 @@ public class Personaje {
     private int idRaza;
     private int idClase;
     private int idCiudadActual;
+    private HashMap<Item, Integer> inventarios;
 
     // Constructor
     public Personaje(int id, String nombre, int nivel, int oro, int vidaActual, int idRaza, int idClase, int idCiudadActual) {
@@ -20,6 +23,11 @@ public class Personaje {
         this.idRaza = idRaza;
         this.idClase = idClase;
         this.idCiudadActual = idCiudadActual;
+        this.inventarios = obtenerInventarios();
+    }
+
+    private HashMap<Item, Integer> obtenerInventarios() {
+        return new HashMap<>();
     }
 
     // Get

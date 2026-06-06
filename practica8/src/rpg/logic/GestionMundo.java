@@ -1,13 +1,14 @@
 package rpg.logic;
 
 import rpg.dao.*;
-import rpg.exception.FondosInsuficientesException;
 import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 import rpg.ui.Vista;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class GestionMundo {
@@ -58,7 +59,7 @@ public class GestionMundo {
                     comprarItems();
                     break;
                 case 4:
-                    System.out.println("Cobro de impuestos.");
+                    cobroImpuestos(this.personajeDAO.obtenerPersonajes());
                     break;
                 case 5:
                     System.out.println("Combate.");
@@ -120,7 +121,7 @@ public class GestionMundo {
         this.vista.mostrarMensaje("VIAJAR DE CIUDAD -> ");
 
 
-        ArrayList<Personaje> listaPersonajes = this.personajeDAO.obtenerPersonaje();
+        ArrayList<Personaje> listaPersonajes = this.personajeDAO.obtenerPersonajes();
 
 
         int posicionPersonaje = this.vista.mostrarPersonajes(listaPersonajes);
@@ -161,13 +162,13 @@ public class GestionMundo {
 
             }
 
-        } catch(NivelInsuficienteException e){
+        } catch (NivelInsuficienteException e) {
             this.vista.mostrarMensaje("Error: " + e.getMessage());
         }
     }
 
 
-    public void comprarItems () {
+    public void comprarItems() {
 
         this.vista.mostrarMensaje("COMPRA DE ITEMS -> ");
 
@@ -176,8 +177,57 @@ public class GestionMundo {
         int posicionItem = this.vista.mostrarItems(listaItems);
 
 
+    }
+
+
+    // Punto 6: Ejercicio censo de clases
+
+    public void censoClases() {
+
+        ArrayList<Personaje> listaPersonajes = this.personajeDAO.obtenerPersonajes();
+
+        HashMap<Integer, Integer> mapClases = new HashMap<>();
+
+        for (int i = 0; i < listaPersonajes.size(); i++) {
+
+            if (mapClases.containsKey(listaPersonajes.get(i).getIdClase())) {
+
+                mapClases.put(listaPersonajes.get(i).getIdClase(), mapClases.get(listaPersonajes.get(i).getIdClase()) + 1);
+
+            } else {
+
+                mapClases.put(listaPersonajes.get(i).getIdClase(), 1);
+
+            }
+        }
+
+        this.vista.mostrarCenso(mapClases);
 
     }
+
+    // Ejercicio 3.1 y 3.2
+    public void cobroImpuestos(List<Personaje> residentes) {
+
+        Iterator<Personaje> iterator = residentes.iterator();
+
+        while (iterator.hasNext()) {
+
+            Personaje personaje = iterator.next();
+
+            this.personajeDAO.updateImpuesto(personaje);
+
+            if (personaje.getOro() < 0){
+                iterator.remove();
+                this.personajeDAO.updateDesterrar(personaje);
+
+                this.vista.mostrarMensaje(" Personaje desterrado . ");
+
+            }
+        }
+
+    }
+
+
 
 
 }

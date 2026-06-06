@@ -3,6 +3,7 @@ import rpg.model.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Vista {
@@ -123,6 +124,19 @@ public class Vista {
             sc.next();
         }
         return sc.nextInt() -1;
+
+    }
+
+    //Punto 6: Censo de Clases
+    public void mostrarCenso(HashMap<Integer,Integer> mapClases){
+
+        System.out.println("Censo de clases: ");
+
+        for (Integer clase : mapClases.keySet()){
+
+            System.out.println(clase + ": " + mapClases.get(clase));
+        }
+
 
     }
 
